@@ -19,6 +19,9 @@ def get_train_test_dataset(env_name, *args, **kwargs):
     elif env_name == 'AIME24':
         print(f'Loading AIME24 dataset')
         test_ds = JsonlMathDataset(env_dir / "dataset/test_aime.jsonl")
+    elif env_name == 'MINERVA':
+        print(f'Loading Minerva dataset')
+        test_ds = JsonlMathDataset(env_dir / "dataset/test_minerva.jsonl")
     return train_ds, test_ds
 
 
@@ -41,5 +44,8 @@ class JsonlMathDataset(Dataset):
             return {"question": x["problem"], "answer": str(x["solution"]), "extracted_groundtruth": str(x["extracted_groundtruth"])}
         elif 'aime' in self.data_path.stem:
             return {"question": x["problem"], "answer": str(x["solution"]), "extracted_groundtruth": str(x["extracted_groundtruth"])}
+        elif 'minerva' in self.data_path.stem:
+            # Minerva dataset format: simple {"question": ..., "answer": ...}
+            return {"question": x["question"], "answer": str(x["answer"]), "extracted_groundtruth": str(x["answer"])}
         else:
             return {"question": x["problem"], "answer": x["solution"], "level": x["level"]}

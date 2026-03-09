@@ -194,6 +194,11 @@ if __name__ == "__main__":
         start_time = time.time()
         last_time = start_time
 
+        # Track metrics for final summary
+        method_accuracies = {}  # {method_name: [list of 0/1 results]}
+        total_completion_tokens = 0
+        num_completed = 0
+
         for i, (problem_inst, result, output) in enumerate(res_q):
             if len(output) == 0:
                 continue
@@ -227,13 +232,51 @@ if __name__ == "__main__":
             if not question_parallel_num:
                 results.append(result)
 
+                # Track accuracy per method (exclude total_completion_tokens)
+                for method_key, accuracy in result.items():
+                    if method_key != "total_completion_tokens":
+                        if method_key not in method_accuracies:
+                            method_accuracies[method_key] = []
+                        method_accuracies[method_key].append(accuracy)
+
+                # Track tokens
+                if "total_completion_tokens" in result:
+                    total_completion_tokens += result["total_completion_tokens"]
+                    num_completed += 1
+
+        end_time = time.time()
+        total_elapsed_time = end_time - start_time
+
         if not question_parallel_num:
             try:
                 avg_res = (tree.map_structure(lambda *xs: np.mean(xs), *results),)
                 json.dump(avg_res, open(os.path.join(save_dir, f"avg_result.json"), "w"))
-                print("Method: {}. Average result: {}".format(method_name, avg_res))
+                print("\n" + "="*100)
+                print("EVALUATION SUMMARY")
+                print("="*100)
+                print("Method: {}".format(method_name))
+                print("\nAccuracy per evaluation method:")
+
+                # Print accuracy for each method
+                if method_accuracies:
+                    for method_key in sorted(method_accuracies.keys()):
+                        accuracies = method_accuracies[method_key]
+                        avg_accuracy = np.mean(accuracies) if accuracies else 0.0
+                        print(f"  {method_key:20s}: {avg_accuracy:.4f} ({int(sum(accuracies))}/{len(accuracies)})")
+
+                # Print timing and token statistics
+                if num_completed > 0:
+                    avg_time_per_sample = total_elapsed_time / num_completed
+                    avg_tokens_per_sample = total_completion_tokens / num_completed
+                    print(f"\nTotal evaluation time: {total_elapsed_time:.2f}s")
+                    print(f"Average time per sample: {avg_time_per_sample:.4f}s")
+                    print(f"Average tokens per sample: {avg_tokens_per_sample:.2f}")
+
+                print("="*100 + "\n")
             except Exception as e:
-                pass
+                print(f"Error in final summary: {e}")
+                import traceback
+                traceback.print_exc()
 
         return results
 
