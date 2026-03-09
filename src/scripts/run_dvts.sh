@@ -1,4 +1,4 @@
-BEAMSEARCH_DIR="scripts/Qwen2.5-7B/dvts"
+BEAMSEARCH_DIR="src/scripts/Qwen2.5-7B/dvts"
 
 echo "Starting all beamsearch experiments..."
 echo "========================================"
