@@ -1,4 +1,4 @@
-BEAMSEARCH_DIR="/Users/luungoc/Project/compute-optimal-tts/src/scripts/Qwen2.5-7B/beamsearch"
+BEAMSEARCH_DIR="scripts/Qwen2.5-7B/beamsearch"
 
 echo "Starting all beamsearch experiments..."
 echo "========================================"
@@ -10,9 +10,8 @@ for script in "$BEAMSEARCH_DIR"/run_*.sh; do
         echo "Running: $(basename "$script")"
         echo "--------------------------------------"
         bash "$script"
-        fi
-        echo ""
     fi
+    echo ""
 done
 
 echo "========================================"
