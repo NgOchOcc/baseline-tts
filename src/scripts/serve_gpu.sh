@@ -8,6 +8,36 @@ export LLM_BASE_PORT=10082
 export no_proxy="127.0.0.0/8,10.0.0.0/8,0.0.0.0,harbor.vinai-systems.com,gitlab.vinai.io,gitlab.movian.ai"
 
 
+export VALUE_MODEL_PATH=Qwen/Qwen2.5-Math-PRM-7B
+export POLICY_MODEL_PATH=Qwen/Qwen2.5-7B-Instruct
+export LOGDIR=logs/cot_math
+export HOST_ADDR=127.0.0.1
+export CONTROLLER_PORT=10114
+export WORKER_BASE_PORT=10181
+export LLM_BASE_PORT=10182
+export no_proxy="127.0.0.0/8,10.0.0.0/8,0.0.0.0,harbor.vinai-systems.com,gitlab.vinai.io,gitlab.movian.ai"
+
+
+export VALUE_MODEL_PATH=Qwen/Qwen2.5-Math-PRM-7B
+export POLICY_MODEL_PATH=Qwen/Qwen2.5-7B-Instruct
+export LOGDIR=logs/cot_math
+export HOST_ADDR=127.0.0.1
+export CONTROLLER_PORT=10214
+export WORKER_BASE_PORT=10281
+export LLM_BASE_PORT=10282
+export no_proxy="127.0.0.0/8,10.0.0.0/8,0.0.0.0,harbor.vinai-systems.com,gitlab.vinai.io,gitlab.movian.ai"
+
+
+export VALUE_MODEL_PATH=Qwen/Qwen2.5-Math-PRM-7B
+export POLICY_MODEL_PATH=Qwen/Qwen2.5-7B-Instruct
+export LOGDIR=logs/cot_math
+export HOST_ADDR=127.0.0.1
+export CONTROLLER_PORT=10314
+export WORKER_BASE_PORT=10381
+export LLM_BASE_PORT=10382
+export no_proxy="127.0.0.0/8,10.0.0.0/8,0.0.0.0,harbor.vinai-systems.com,gitlab.vinai.io,gitlab.movian.ai"
+
+
 ### Conda Env
 conda activate /lustre/scratch/client/movian/research/users/anhnd81/.conda/envs/roberta
 

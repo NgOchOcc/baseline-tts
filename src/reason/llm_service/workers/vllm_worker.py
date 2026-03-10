@@ -246,7 +246,6 @@ if __name__ == "__main__":
     parser.add_argument("--max_model_length", type=int, default=0)
     parser.add_argument("--max_num_sequences", type=int, default=0)
     parser.add_argument("--enable_chunked_prefill", action="store_true")
-    parser.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility")
 
     if 'gemma-2' in parser.parse_args().model_path.lower():
         raise ValueError(f"Use SGlang for Gemma-2 Series Models")
@@ -268,8 +267,12 @@ if __name__ == "__main__":
         args.load_format = 'mistral'
 
     engine_args = AsyncEngineArgs.from_cli_args(args)
-    if args.seed is not None:
+
+    # Ensure seed is set if provided via CLI argument
+    # This guarantees seed from shell script is passed to vLLM engine
+    if hasattr(args, 'seed') and args.seed is not None:
         engine_args.seed = args.seed
+
     engine = AsyncLLMEngine.from_engine_args(engine_args)
 
     worker = VLLMWorker(
