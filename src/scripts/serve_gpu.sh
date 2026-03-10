@@ -13,16 +13,16 @@ conda activate /lustre/scratch/client/movian/research/users/anhnd81/.conda/envs/
 
 
 ### Fastchat
-python -m fastchat.serve.controller --port 10014 --host 127.0.0.1
+python -m fastchat.serve.controller --port $CONTROLLER_PORT --host $HOST_ADDR
 
 
 ### Reward Model
 CUDA_VISIBLE_DEVICES=0 python -m reason.llm_service.workers.reward_model_worker \
   --model-path Qwen/Qwen2.5-Math-PRM-7B \
-  --controller-address http://127.0.0.1:10014 \
-  --host 127.0.0.1 \
-  --port 10081 \
-  --worker-address http://127.0.0.1:10081
+  --controller-address http://$HOST_ADDR:$CONTROLLER_PORT \
+  --host $HOST_ADDR \
+  --port $WORKER_BASE_PORT \
+  --worker-address http://$HOST_ADDR:$WORKER_BASE_PORT
 
 
 ### Policy Model
@@ -31,16 +31,16 @@ CUDA_VISIBLE_DEVICES=1 python -m reason.llm_service.workers.vllm_worker \
   --gpu_memory_utilization 0.7 \
   --swap_space 16 \
   --model-path Qwen/Qwen2.5-7B-Instruct \
-  --controller-address http://127.0.0.1:10014 \
-  --host 127.0.0.1 \
-  --port 10082 \
-  --worker-address http://127.0.0.1:10082
+  --controller-address http://$HOST_ADDR:$CONTROLLER_PORT \
+  --host $HOST_ADDR \
+  --port $LLM_BASE_PORT \
+  --worker-address http://$HOST_ADDR:$LLM_BASE_PORT
 
 
 ### Test API
-curl http://127.0.0.1:10014/receive_heart_beat
+curl http://$HOST_ADDR:$CONTROLLER_PORT/receive_heart_beat
 
-curl http://127.0.0.1:10082/worker_generate \
+curl http://$HOST_ADDR:$LLM_BASE_PORT/worker_generate \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{
