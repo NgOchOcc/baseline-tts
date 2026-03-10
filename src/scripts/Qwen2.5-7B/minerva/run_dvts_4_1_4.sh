@@ -31,7 +31,7 @@ local=0
 num_worker=1
 seed=0
 
-python reason/evaluation/evaluate.py \
+python -m reason.evaluation.evaluate \
     --LM $POLICY_MODEL_PATH \
     --RM $VALUE_MODEL_PATH \
     --task_name $task_names \

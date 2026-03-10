@@ -36,7 +36,7 @@ for seed in 0 1 2
 do
     echo "Running with seed ${seed}"
 
-    python reason/evaluation/evaluate.py \
+    python -m reason.evaluation.evaluate \
         --LM $POLICY_MODEL_PATH \
         --RM $VALUE_MODEL_PATH \
         --task_name $task_names \
