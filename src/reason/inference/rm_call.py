@@ -156,13 +156,15 @@ class RemoteRewardModelConfig(RewardModelBaseConfig):
 
 
 def _reward_inference_fastchat(input_str, model_name, controller_addr="http://localhost:10014", multi_gpu=False, timeout=0):
+    import os
     if multi_gpu:
         ret = requests.post(controller_addr + "/get_worker_address", json={"model": model_name})
         worker_addr = ret.json()["address"]
         if not worker_addr:
             raise ValueError("Value Model name {} does not exist.".format(model_name))
     else:
-        worker_addr = "http://0.0.0.0:10081"
+        # Allow override via environment variable
+        worker_addr = os.getenv("RM_WORKER_ADDR", "http://0.0.0.0:10081")
 
     headers = {"User-Agent": "FastChat Client"}
     gen_params = {"input_str": input_str}

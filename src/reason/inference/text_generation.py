@@ -63,13 +63,15 @@ def _generate_fastchat(
     double_line_break=0,
     first_generation=False,
 ) -> ConcatedLMGenResult:
+    import os
     if multi_gpu:
         ret = requests.post(controller_addr + "/get_worker_address", json={"model": model_name})  # get worker address by model name
         worker_addr = ret.json()["address"]
         if not worker_addr:
             raise ValueError("Language Model name {} does not exist.".format(model_name))
     else:
-        worker_addr = "http://0.0.0.0:10082"
+        # Allow override via environment variable
+        worker_addr = os.getenv("LLM_WORKER_ADDR", "http://0.0.0.0:10082")
 
     if apply_chat_template:
         prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)
@@ -131,11 +133,12 @@ def _generate_sgl(
     double_line_break=0,
     first_generation=False,
 ) -> ConcatedLMGenResult:
-
+    import os
     if multi_gpu:
         raise ValueError("Multi-GPU is not supported for SGlang model.")
     else:
-        worker_addr = "http://0.0.0.0:10082"
+        # Allow override via environment variable
+        worker_addr = os.getenv("LLM_WORKER_ADDR", "http://0.0.0.0:10082")
 
     if apply_chat_template:
         prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)

@@ -86,7 +86,9 @@ if __name__ == "__main__":
     parser.add_argument("--is_few_shot", action="store_true")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--save_dir", type=str, default=None)
-    parser.add_argument("--controller_addr", type=str, default="http://localhost:10014")
+    parser.add_argument("--controller_addr", type=str, default="http://localhost:10014", help="FastChat controller address")
+    parser.add_argument("--llm_base_port", type=int, default=None, help="LLM worker port (optional, for direct worker address)")
+    parser.add_argument("--rm_base_port", type=int, default=None, help="RM worker port (optional, for direct worker address)")
     parser.add_argument("--num_worker", type=int, default=8)
     parser.add_argument("--local", type=int, default=0)
     parser.add_argument("--question_parallel_num", type=int, default=0)
@@ -143,6 +145,13 @@ if __name__ == "__main__":
         args.RM = args.RM[:-1]
     rm_model_name = args.RM
     rm_model_path = args.RM
+
+    # Extract host from controller_addr for building worker addresses
+    # Example: http://127.0.0.1:10014 → 127.0.0.1
+    from urllib.parse import urlparse
+    parsed_url = urlparse(args.controller_addr)
+    host_addr = parsed_url.hostname or "127.0.0.1"
+
     if "dummy" in args.RM:
         rm_config = RemoteRewardModelConfig(
             prm_step_tag=args.prm_step_tag, format_str=args.prm_format_str, model_name=args.RM, controller_addr=args.controller_addr,
