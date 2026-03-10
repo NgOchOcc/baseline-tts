@@ -5,12 +5,12 @@ export LOGDIR=logs/cot_math
 export HOST_ADDR=127.0.0.1
 export CONTROLLER_PORT=10014
 export WORKER_BASE_PORT=10081
-export PYTHONPATH=/lustre/scratch/client/movian/research/users/ngoclt69/workspace/baselines_tts
+export PYTHONPATH=/lustre/scratch/client/movian/research/users/ngoclt69/workspace/baselines_tts/src
 
-cd ${PYTHONPATH}
 save_dir=${PYTHONPATH}/output
 LOGDIR=${PYTHONPATH}/logs_fastchat
 controller_addr=http://$HOST_ADDR:$CONTROLLER_PORT
+
 
 
 LM=Qwen/Qwen2.5-Math-PRM-7B
