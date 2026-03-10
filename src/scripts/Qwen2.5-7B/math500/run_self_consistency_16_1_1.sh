@@ -3,9 +3,6 @@ export VALUE_MODEL_PATH=Qwen/Qwen2.5-Math-PRM-7B
 export POLICY_MODEL_PATH=Qwen/Qwen2.5-7B-Instruct
 export LOGDIR=logs/cot_math
 export HOST_ADDR=127.0.0.1
-export CONTROLLER_PORT=10014
-export WORKER_BASE_PORT=10081
-export LLM_BASE_PORT=10082
 
 export PYTHONPATH=/lustre/scratch/client/movian/research/users/ngoclt69/workspace/baselines_tts/src
 
