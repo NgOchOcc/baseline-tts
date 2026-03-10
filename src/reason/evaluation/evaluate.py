@@ -358,7 +358,7 @@ if __name__ == "__main__":
     cfg_dict_record["method"] = args.method
     cfg_dict_record["method_config"] = method_config.__dict__
 
-    params = f'{args.tree_max_depth}_{args.tree_max_width}_{args.num_sequence}'
+    params = f'seed_{args.seed}_width_{args.tree_max_width}_num_seq_{args.num_sequence}_num_q_{args.question_parallel_num}'
     model_name = get_model_name(args.LM[0])
     rm_model_name = get_model_name(args.RM)
     save_dir = f'{args.save_dir}/{args.task_name}_{args.method}/{model_name}/{rm_model_name}/{params}'
@@ -385,7 +385,7 @@ if __name__ == "__main__":
         print(f"Error: {e}")
 
     actor_pool = ActorPool(
-        [RemoteMathEvaluator.remote(args.task_name, llm_gen_fns, rm_call, direct_io=direct_io) for _ in range(args.num_worker)]
+        [RemoteMathEvaluator.remote(args.task_name, llm_gen_fns, rm_call, direct_io=direct_io, seed=args.seed) for _ in range(args.num_worker)]
     )
 
     test_ds = task.test_ds(args.task_name)

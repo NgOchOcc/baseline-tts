@@ -192,6 +192,10 @@ class MathEvaluator:
 @ray.remote
 class RemoteMathEvaluator(MathEvaluator):
     def __init__(
-        self, task: str, lm_calls: List[LanguageModelCallingFunction], rm_call: RewardModelCallingFunction, direct_io=False
+        self, task: str, lm_calls: List[LanguageModelCallingFunction], rm_call: RewardModelCallingFunction, direct_io=False, seed: int = None
     ):
         super().__init__(task, lm_calls, rm_call, direct_io)
+        # Set seed for this Ray actor process
+        if seed is not None:
+            from utils import setup_seed
+            setup_seed(seed)
