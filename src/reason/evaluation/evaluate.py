@@ -394,7 +394,7 @@ if __name__ == "__main__":
         print(f"Error: {e}")
 
     actor_pool = ActorPool(
-        [RemoteMathEvaluator.remote(args.task_name, llm_gen_fns, rm_call, direct_io=direct_io, seed=args.seed) for _ in range(args.num_worker)]
+        [RemoteMathEvaluator.remote(args.task_name, llm_gen_fns, rm_call, direct_io=direct_io, seed=args.seed, timeout_seconds=300) for _ in range(args.num_worker)]
     )
 
     test_ds = task.test_ds(args.task_name)

@@ -1,38 +1,41 @@
 #!/bin/bash
 export VALUE_MODEL_PATH=Qwen/Qwen2.5-Math-PRM-7B
-export POLICY_MODEL_PATH=Qwen/Qwen2.5-7B-Instruct
+export POLICY_MODEL_PATH=microsoft/Phi-4-mini-instruct
 export LOGDIR=logs/cot_math
-export HOST_ADDR=127.0.0.1
+export HOST_ADDR=0.0.0.0
+export CONTROLLER_PORT=10014
+export WORKER_BASE_PORT=10081
+export PYTHONPATH=$(pwd)
+export LLM_WORKER_ADDR="http://$HOST_ADDR:$LLM_BASE_PORT"
+export RM_WORKER_ADDR="http://$HOST_ADDR:$WORKER_BASE_PORT"
 
-export PYTHONPATH=/lustre/scratch/client/movian/research/users/ngoclt69/workspace/baselines_tts/src
-
+cd ${PYTHONPATH}
 save_dir=${PYTHONPATH}/output
 LOGDIR=${PYTHONPATH}/logs_fastchat
 controller_addr=http://$HOST_ADDR:$CONTROLLER_PORT
 
 
-
-
-LM=Qwen/Qwen2.5-Math-PRM-7B
-RM=Qwen/Qwen2.5-7B-Instruct
-task_names="MINERVA"
-method=beam_search
+task_names="MATH"
+method=beamsearch
 temperature=0.7
-max_new_tokens=2048
+max_new_tokens=4096
 tree_max_depth=40
-tree_max_width=8
+tree_max_width=16
 num_sequence=2
-question_parallel_num=0
-batch_size=500
+question_parallel_num=4
+batch_size=10000
 max_time=3
 double_line_break=1
 local=0
 num_worker=1
 seed=0
 
-    # Set worker ports as environment variables
-    export LLM_WORKER_ADDR="http://$HOST_ADDR:$LLM_BASE_PORT"
-    export RM_WORKER_ADDR="http://$HOST_ADDR:$WORKER_BASE_PORT"
+
+echo "Running with seed ${seed}"
+
+# Set worker ports as environment variables
+export LLM_WORKER_ADDR="http://$HOST_ADDR:$LLM_BASE_PORT"
+export RM_WORKER_ADDR="http://$HOST_ADDR:$WORKER_BASE_PORT"
 
 python -m reason.evaluation.evaluate \
     --LM $POLICY_MODEL_PATH \

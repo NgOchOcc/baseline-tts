@@ -9,6 +9,7 @@ import time
 import traceback
 from dataclasses import dataclass
 from typing import Callable, Dict, List, Union
+import threading
 
 import numpy as np
 import os
@@ -112,7 +113,7 @@ class TreeSearchSolutionOutput(SolutionOutput):
 class MathEvaluator:
 
     def __init__(
-        self, task: Union[str, Task], lm_calls: List[LanguageModelCallingFunction], rm_call: RewardModelCallingFunction, direct_io=False
+        self, task: Union[str, Task], lm_calls: List[LanguageModelCallingFunction], rm_call: RewardModelCallingFunction, direct_io=False, timeout_seconds: int = 300
     ):
         if isinstance(task, str):
             self._task = Task(task_name=task)
@@ -122,9 +123,37 @@ class MathEvaluator:
         self.lm_calls = lm_calls
         self.rm_call = rm_call
         self.direct_io = direct_io
+        self.timeout_seconds = timeout_seconds  # Default: 5 minutes (300 seconds)
 
     def evaluate_problem(self, problem_inst: Dict[str, str], solver_fn: Callable) -> List[str]:
-        solution: SolutionOutput = solver_fn(problem_inst, self.lm_calls, self.rm_call)
+        # Try to solve with timeout
+        solution = None
+        timeout_occurred = False
+
+        def solve_with_timeout():
+            nonlocal solution, timeout_occurred
+            try:
+                solution = solver_fn(problem_inst, self.lm_calls, self.rm_call)
+            except Exception as e:
+                print(f"Error during solving: {e}")
+                traceback.print_exc()
+
+        # Run solver in a thread with timeout
+        solver_thread = threading.Thread(target=solve_with_timeout)
+        solver_thread.daemon = True
+        solver_thread.start()
+        solver_thread.join(timeout=self.timeout_seconds)
+
+        if solver_thread.is_alive():
+            timeout_occurred = True
+            print(f"TIMEOUT: Problem {problem_inst.get('question', '')[:50]}... took longer than {self.timeout_seconds} seconds. Marking as incorrect.")
+            # Return empty solution (all incorrect)
+            return self._get_timeout_result(problem_inst)
+
+        if solution is None:
+            print(f"ERROR: Failed to get solution for problem {problem_inst.get('question', '')[:50]}...")
+            return self._get_timeout_result(problem_inst)
+
         reward_history = solution.reward_history
         token_history = solution.token_history
         prob_history = solution.prob_history
@@ -141,6 +170,27 @@ class MathEvaluator:
             # We define the completion_tokens as the tokens consumed between two generated answers, therefore we need to take sum here.
             total_completion_token += solution.completion_tokens[i]
         result["total_completion_tokens"] = total_completion_token
+        return problem_inst, result, output
+
+    def _get_timeout_result(self, problem_inst: Dict[str, str]):
+        """Return a result marking the problem as incorrect due to timeout."""
+        # Create a minimal output indicating timeout
+        result = {agg_method: 0 for agg_method in CHOSEN_AGGR_METHODS}
+        result["total_completion_tokens"] = 0
+
+        output = [{
+            "path_idx": 0,
+            "text": "[TIMEOUT] Solution took longer than {} seconds".format(self.timeout_seconds),
+            "value": 0.0,
+            "extracted_answer": "TIMEOUT",
+            "reward_history": [0.0],
+            "token_history": [0],
+            "prob_history": [0.0],
+            "model_history": [],
+            "completion_tokens": 0,
+            "tree_completion_tokens": 0,
+        }]
+
         return problem_inst, result, output
 
     def analyze_output(
@@ -192,9 +242,9 @@ class MathEvaluator:
 @ray.remote
 class RemoteMathEvaluator(MathEvaluator):
     def __init__(
-        self, task: str, lm_calls: List[LanguageModelCallingFunction], rm_call: RewardModelCallingFunction, direct_io=False, seed: int = None
+        self, task: str, lm_calls: List[LanguageModelCallingFunction], rm_call: RewardModelCallingFunction, direct_io=False, seed: int = None, timeout_seconds: int = 300
     ):
-        super().__init__(task, lm_calls, rm_call, direct_io)
+        super().__init__(task, lm_calls, rm_call, direct_io, timeout_seconds)
         # Set seed for this Ray actor process
         if seed is not None:
             from utils import setup_seed
