@@ -16,7 +16,7 @@ controller_addr=http://$HOST_ADDR:$CONTROLLER_PORT
 
 
 task_names="AMC23"
-method=beamsearch
+method=beam_search
 temperature=0.7
 max_new_tokens=4096
 tree_max_depth=40

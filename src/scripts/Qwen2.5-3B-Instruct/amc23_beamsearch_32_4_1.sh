@@ -16,13 +16,13 @@ controller_addr=http://$HOST_ADDR:$CONTROLLER_PORT
 
 
 task_names="AMC23"
-method=beamsearch
+method=beam_search
 temperature=0.7
 max_new_tokens=4096
 tree_max_depth=40
 tree_max_width=32
-num_sequence=2
-question_parallel_num=4
+num_sequence=4
+question_parallel_num=1
 batch_size=10000
 max_time=3
 double_line_break=1
