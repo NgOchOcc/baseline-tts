@@ -2,9 +2,6 @@
 export VALUE_MODEL_PATH=Qwen/Qwen2.5-Math-PRM-7B
 export POLICY_MODEL_PATH=meta-llama/Llama-3.2-3B-Instruct
 export LOGDIR=logs/cot_math
-export HOST_ADDR=0.0.0.0
-export CONTROLLER_PORT=10014
-export WORKER_BASE_PORT=10081
 export PYTHONPATH=$(pwd)
 export LLM_WORKER_ADDR="http://$HOST_ADDR:$LLM_BASE_PORT"
 export RM_WORKER_ADDR="http://$HOST_ADDR:$WORKER_BASE_PORT"

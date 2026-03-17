@@ -74,7 +74,9 @@ def _generate_fastchat(
         worker_addr = os.getenv("LLM_WORKER_ADDR", "http://0.0.0.0:10082")
 
     if apply_chat_template:
-        prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)
+        # For Phi-4, use add_generation_prompt=True to properly format assistant generation and avoid special token repetition
+        add_gen_prompt = True if 'phi-4' in model_name.lower() else False
+        prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=add_gen_prompt)
         prompt = process_prompt(prompt, tokenizer, model_name, double_line_break, first_generation)
     else:
         prompt = messages
@@ -141,7 +143,9 @@ def _generate_sgl(
         worker_addr = os.getenv("LLM_WORKER_ADDR", "http://0.0.0.0:10082")
 
     if apply_chat_template:
-        prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)
+        # For Phi-4, use add_generation_prompt=True to properly format assistant generation and avoid special token repetition
+        add_gen_prompt = True if 'phi-4' in model_name.lower() else False
+        prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=add_gen_prompt)
         prompt = process_prompt(prompt, tokenizer, model_name, double_line_break, first_generation)
     else:
         prompt = messages

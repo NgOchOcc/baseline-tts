@@ -62,6 +62,14 @@ class Env(CoTEnv):
 
     def post_process_act(self, action: str):
         action = action.strip()
+        # Remove <|assistant|> token from Phi-4-mini-instruct model outputs (keep only the first one)
+        if 'phi-4' in self.model_names[0].lower():
+            parts = action.split('<|assistant|>')
+            if len(parts) > 1:
+                # Keep first part + first <|assistant|> token + remaining parts joined without tokens
+                action = parts[0] + '<|assistant|>' + ''.join(parts[1:])
+            action = action.strip()
+
         if self.direct_io == 2:
             return action
         elif self.direct_io == 1:
