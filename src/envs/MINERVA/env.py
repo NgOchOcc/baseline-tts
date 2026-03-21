@@ -1,5 +1,5 @@
 """
-MINERVA task evaluation module using math_verify.
+MINERVA task evaluation module using math_verify or fallback to MATH folder functions.
 Adapted from test_minerva.py
 """
 
@@ -7,9 +7,18 @@ import re
 from typing import Optional
 from envs.base_env import CoTEnv, NoLegalActionException, INVALID_ANS
 
-# Import math_verify
-from math_verify import verify, parse
-from math_verify.parser import ExprExtractionConfig, LatexExtractionConfig
+# Try to import math_verify, fallback to MATH folder functions
+try:
+    from math_verify import verify, parse
+    from math_verify.parser import ExprExtractionConfig, LatexExtractionConfig
+    HAS_MATH_VERIFY = True
+except ImportError:
+    print("⚠️  math_verify not available, using MATH folder functions as fallback")
+    HAS_MATH_VERIFY = False
+    # Import from MATH folder
+    from envs.MATH.grader import math_equal
+    from envs.MATH.verify_utils import grade_answer
+    from envs.MATH.parse_utils_qwen import extract_answer as math_extract_answer
 
 
 def extract_boxed_answer(text: str) -> Optional[str]:
@@ -80,10 +89,11 @@ def verify_answer(
     use_math_verify: bool = True,
 ) -> bool:
     """
-    Verify response against ground truth using math_verify.
+    Verify response against ground truth.
+    Uses math_verify if available, otherwise falls back to MATH folder functions.
     Adapted from test_minerva.py
     """
-    if use_math_verify:
+    if use_math_verify and HAS_MATH_VERIFY:
         try:
             gold_parsed = parse(
                 f"\\boxed{{{ground_truth}}}",
@@ -95,10 +105,30 @@ def verify_answer(
             )
             return bool(verify(gold_parsed, pred_parsed))
         except Exception:
-            # Fallback: simple string match
+            # Fallback: try MATH folder functions
             pass
 
-    # Fallback: extract boxed + string match
+    # Fallback 1: Use MATH folder functions if math_verify not available
+    if not HAS_MATH_VERIFY:
+        # Extract answer from response
+        pred = extract_boxed_answer(response)
+        if pred is None:
+            # Try extracting last number
+            pattern = r"-?\d*\.?\d+"
+            matches = re.findall(pattern, response.replace(",", ""))
+            pred = matches[-1] if matches else None
+
+        if pred is None:
+            return False
+
+        try:
+            # Use MATH folder's math_equal
+            return math_equal(pred.strip(), ground_truth.strip(), include_percentage=True, is_close=True)
+        except Exception:
+            # Last resort: string match
+            return pred.strip() == ground_truth.strip()
+
+    # Fallback 2: extract boxed + string match (if math_verify method failed)
     pred = extract_boxed_answer(response)
     if pred is None:
         return False

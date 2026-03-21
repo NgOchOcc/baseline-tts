@@ -34,24 +34,27 @@ from utils import get_step_cnt, to_raw_string, load_jsonl
 
 class Task:
     def __init__(self, task_name: str, is_few_shot: bool = False, model_names=[]):
-        # Map task aliases to actual task names
-        if task_name in ("AMC23", "AIME24"):
-            task_name = "MATH"
+        # Map task aliases to actual task names (same as get_env_datasets)
+        if task_name in ("AMC23", "AIME24", "MINERVA"):
+            actual_task_name = "MATH"
+        else:
+            actual_task_name = task_name
 
-        self.task_name = task_name
+        self.task_name = task_name  # Keep original for reference
+        self.actual_task_name = actual_task_name  # Use this for loading modules
 
         # Load task module dynamically
         try:
-            task_module = importlib.import_module(f"envs.{task_name}")
+            task_module = importlib.import_module(f"envs.{actual_task_name}")
         except ImportError:
-            raise NotImplementedError(f"Task module 'envs.{task_name}' not found. Supported tasks: MATH, MINERVA")
+            raise NotImplementedError(f"Task module 'envs.{actual_task_name}' not found. Supported tasks: MATH, MINERVA, AMC23, AIME24")
 
         # Verify required functions exist
         required_functions = ["extract_answer", "extract_groundtruth", "judge_correct"]
         for func_name in required_functions:
             if not hasattr(task_module, func_name):
                 raise NotImplementedError(
-                    f"Task {task_name} module missing required function: {func_name}"
+                    f"Task {actual_task_name} module missing required function: {func_name}"
                 )
 
         self.extract_answer = task_module.extract_answer
@@ -63,15 +66,11 @@ class Task:
         self.env_fn = task_module.Env
 
     def prompt_fn(self, problem_input: str):
-        # For MINERVA, use direct problem formatting without prompt builder
-        if self.task_name == "MINERVA":
-            return problem_input
+        # For MINERVA, use MATH prompt builder (automatically mapped in get_default_query_str_builder)
         return get_default_query_str_builder(self.task_name)(problem_input, is_few_shot=self._is_few_shot, model_names=self.model_names)
 
     def test_ds(self, task_name):
-        # For MINERVA, dataset loading should be handled by the calling code
-        if task_name == "MINERVA":
-            raise NotImplementedError("MINERVA dataset loading should be handled by the calling code")
+        # get_env_datasets automatically maps MINERVA -> MATH and loads test_minerva.jsonl
         return get_env_datasets(task_name)[1]
 
 
