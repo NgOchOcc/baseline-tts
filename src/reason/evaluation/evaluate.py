@@ -82,7 +82,8 @@ if __name__ == "__main__":
     parser.add_argument("--tree_max_depth", type=int, default=None)
     parser.add_argument("--tree_max_width", type=int, default=None)
     # other config
-    parser.add_argument("--task_name", type=str, default="MATH")
+    parser.add_argument("--task_name", type=str, default="MATH", choices=["MATH", "MINERVA"],
+                        help="Task name: MATH or MINERVA")
     parser.add_argument("--is_few_shot", action="store_true")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--save_dir", type=str, default=None)
@@ -100,26 +101,34 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if 'llama-3' in args.LM.lower():
-        args.cot_prompt = cot_prompt_dict['llama_official']
-        args.llm_step_tag = llm_step_tag_dict['llama']
-        args.sep = sep_dict['llama']
-        args.stop_str = stop_str_dict['llama']
-    elif 'qwen' in args.LM.lower():
-        args.cot_prompt = cot_prompt_dict['qwen']
-        args.llm_step_tag = llm_step_tag_dict['qwen']
-        args.sep = sep_dict['qwen']
-        args.stop_str = stop_str_dict['qwen']
-    elif 'deepseek-r1' in args.LM.lower():
-        args.cot_prompt = cot_prompt_dict['default']
-        args.llm_step_tag = llm_step_tag_dict['default']
-        args.sep = sep_dict['default']
-        args.stop_str = stop_str_dict['default']
+    # Only set prompts for MATH task, not MINERVA
+    if args.task_name != "MINERVA":
+        if 'llama-3' in args.LM.lower():
+            args.cot_prompt = cot_prompt_dict['llama_official']
+            args.llm_step_tag = llm_step_tag_dict['llama']
+            args.sep = sep_dict['llama']
+            args.stop_str = stop_str_dict['llama']
+        elif 'qwen' in args.LM.lower():
+            args.cot_prompt = cot_prompt_dict['qwen']
+            args.llm_step_tag = llm_step_tag_dict['qwen']
+            args.sep = sep_dict['qwen']
+            args.stop_str = stop_str_dict['qwen']
+        elif 'deepseek-r1' in args.LM.lower():
+            args.cot_prompt = cot_prompt_dict['default']
+            args.llm_step_tag = llm_step_tag_dict['default']
+            args.sep = sep_dict['default']
+            args.stop_str = stop_str_dict['default']
+        else:
+            args.cot_prompt = cot_prompt_dict['default']
+            args.llm_step_tag = llm_step_tag_dict['default']
+            args.sep = sep_dict['default']
+            args.stop_str = stop_str_dict['default']
     else:
-        args.cot_prompt = cot_prompt_dict['default']
-        args.llm_step_tag = llm_step_tag_dict['default']
-        args.sep = sep_dict['default']
-        args.stop_str = stop_str_dict['default']
+        # For MINERVA, use minimal prompt
+        args.cot_prompt = "Please solve this step by step and put your final answer in \\boxed{}."
+        args.llm_step_tag = ""
+        args.sep = []
+        args.stop_str = []
 
     if args.double_line_break == 1:
         args.sep = ["\n\n"]

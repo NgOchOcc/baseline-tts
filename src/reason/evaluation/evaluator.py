@@ -34,25 +34,44 @@ from utils import get_step_cnt, to_raw_string, load_jsonl
 
 class Task:
     def __init__(self, task_name: str, is_few_shot: bool = False, model_names=[]):
-        if task_name == "AMC23" or "AIME24":
+        # Map task aliases to actual task names
+        if task_name in ("AMC23", "AIME24"):
             task_name = "MATH"
+
         self.task_name = task_name
-        task_module = importlib.import_module(f"envs.{task_name}")
-        if task_name == "MATH" or "rstar":
-            self.extract_answer = task_module.extract_answer
-            self.extract_groundtruth = task_module.extract_groundtruth
-            self.judge_correct = task_module.judge_correct
-        else:
-            raise NotImplementedError(f"Task {task_name} is not supported")
+
+        # Load task module dynamically
+        try:
+            task_module = importlib.import_module(f"envs.{task_name}")
+        except ImportError:
+            raise NotImplementedError(f"Task module 'envs.{task_name}' not found. Supported tasks: MATH, MINERVA")
+
+        # Verify required functions exist
+        required_functions = ["extract_answer", "extract_groundtruth", "judge_correct"]
+        for func_name in required_functions:
+            if not hasattr(task_module, func_name):
+                raise NotImplementedError(
+                    f"Task {task_name} module missing required function: {func_name}"
+                )
+
+        self.extract_answer = task_module.extract_answer
+        self.extract_groundtruth = task_module.extract_groundtruth
+        self.judge_correct = task_module.judge_correct
 
         self._is_few_shot = is_few_shot
         self.model_names = model_names
         self.env_fn = task_module.Env
 
     def prompt_fn(self, problem_input: str):
+        # For MINERVA, use direct problem formatting without prompt builder
+        if self.task_name == "MINERVA":
+            return problem_input
         return get_default_query_str_builder(self.task_name)(problem_input, is_few_shot=self._is_few_shot, model_names=self.model_names)
 
     def test_ds(self, task_name):
+        # For MINERVA, dataset loading should be handled by the calling code
+        if task_name == "MINERVA":
+            raise NotImplementedError("MINERVA dataset loading should be handled by the calling code")
         return get_env_datasets(task_name)[1]
 
 
