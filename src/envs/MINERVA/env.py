@@ -160,7 +160,7 @@ class Env(CoTEnv):
         rm_call,
         task_desc_str: str = "Please solve the following problem step by step, and put your final answer within \\boxed{}.",
         cot_example_str: str = "",
-        problem_format_str: str = "{problem}",
+        problem_format_str: str = "{question}",
         reset=True,
         update_legal_action=True,
     ):
