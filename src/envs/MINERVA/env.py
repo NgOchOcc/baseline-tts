@@ -182,6 +182,12 @@ class Env(CoTEnv):
         self.model_names = config.get("model_names", [])
         self.double_line_break = config.get("double_line_break", 0)
 
+    def get_reward(self):
+        """Get reward from reward model.
+        For MINERVA, returns 0 as placeholder (actual reward comes from rm_call).
+        """
+        return 0
+
     def post_process_act(self, action: str):
         """Post-process action for MINERVA task."""
         action = action.strip()
