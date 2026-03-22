@@ -7,7 +7,7 @@ No voting, no selection strategy - just the first completion.
 import json
 from pathlib import Path
 from typing import Dict, List
-from minerva_utils import verify_answer_smart
+from minerva_utils import verify_answer
 
 
 def baseline_evaluation():
@@ -59,11 +59,12 @@ def baseline_evaluation():
         first_output = outputs[0]
         baseline_answer = first_output.get('extracted_answer')
 
-        # Verify answer
+        # Verify answer using standard minerva.py verification
         if baseline_answer:
-            is_correct = verify_answer_smart(
+            is_correct = verify_answer(
                 f"\\boxed{{{baseline_answer}}}",
-                ground_truth
+                ground_truth,
+                use_math_verify=True
             )
         else:
             is_correct = False

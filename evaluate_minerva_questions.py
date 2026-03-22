@@ -11,7 +11,7 @@ from typing import List, Optional, Tuple
 from pathlib import Path
 
 # Import standard utilities from minerva.py
-from minerva_utils import extract_boxed_answer, verify_answer, verify_answer_smart
+from minerva_utils import extract_boxed_answer, verify_answer
 
 # ── Helper functions ──────────────────────────────────────────────────────
 

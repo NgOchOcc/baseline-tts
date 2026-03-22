@@ -1,8 +1,8 @@
 {
   "summary": {
     "total": 272,
-    "correct": 117,
-    "accuracy": 0.43014705882352944
+    "correct": 61,
+    "accuracy": 0.22426470588235295
   },
   "detailed_results": [
     {
@@ -10,7 +10,7 @@
       "question_dir": "question_0",
       "ground_truth": "1.6",
       "baseline_answer": "1.57",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 1,
@@ -66,7 +66,7 @@
       "question_dir": "question_8",
       "ground_truth": "0.022",
       "baseline_answer": "0.0217",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 9,
@@ -115,7 +115,7 @@
       "question_dir": "question_15",
       "ground_truth": "4e33",
       "baseline_answer": "4 \\times 10^{33}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 16,
@@ -150,7 +150,7 @@
       "question_dir": "question_20",
       "ground_truth": "6630",
       "baseline_answer": "6631",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 21,
@@ -262,14 +262,14 @@
       "question_dir": "question_36",
       "ground_truth": "0.15",
       "baseline_answer": "0.1474",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 37,
       "question_dir": "question_37",
       "ground_truth": "2e27",
       "baseline_answer": "2 \\times 10^{27} \\, \\text{cm}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 38,
@@ -283,14 +283,14 @@
       "question_dir": "question_39",
       "ground_truth": "0.033",
       "baseline_answer": "0.0334",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 40,
       "question_dir": "question_40",
       "ground_truth": "0.5613",
       "baseline_answer": "0.562",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 41,
@@ -318,7 +318,7 @@
       "question_dir": "question_44",
       "ground_truth": "1e-5",
       "baseline_answer": "0.00001",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 45,
@@ -339,7 +339,7 @@
       "question_dir": "question_47",
       "ground_truth": "1e-3",
       "baseline_answer": "0.001",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 48,
@@ -409,7 +409,7 @@
       "question_dir": "question_57",
       "ground_truth": "0.53",
       "baseline_answer": "0.533",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 58,
@@ -430,7 +430,7 @@
       "question_dir": "question_60",
       "ground_truth": "4.4e7",
       "baseline_answer": "44241339",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 61,
@@ -479,7 +479,7 @@
       "question_dir": "question_67",
       "ground_truth": "1+\\sqrt{3} i",
       "baseline_answer": "1 + \\sqrt{3} i",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 68,
@@ -549,7 +549,7 @@
       "question_dir": "question_77",
       "ground_truth": "\\frac{1}{4-\\omega^{2}}",
       "baseline_answer": "\\frac{1}{4 - \\omega^2}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 78,
@@ -584,7 +584,7 @@
       "question_dir": "question_82",
       "ground_truth": "s^{2}+\\omega^{2}",
       "baseline_answer": "s^2 + \\omega^2",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 83,
@@ -661,7 +661,7 @@
       "question_dir": "question_93",
       "ground_truth": "-2+2 \\sqrt{3} i",
       "baseline_answer": "-2 + 2\\sqrt{3}i",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 94,
@@ -731,7 +731,7 @@
       "question_dir": "question_103",
       "ground_truth": "s^{2}+b s+1",
       "baseline_answer": "s^2 + b s + 1",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 104,
@@ -745,7 +745,7 @@
       "question_dir": "question_105",
       "ground_truth": "-8-8 \\sqrt{3} i",
       "baseline_answer": "-8 - 8\\sqrt{3}i",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 106,
@@ -829,14 +829,14 @@
       "question_dir": "question_117",
       "ground_truth": "\\frac{s+\\sigma}{(s+\\sigma)^{2}+\\omega_{d}^{2}}",
       "baseline_answer": "\\frac{s + \\sigma}{(s + \\sigma)^2 + \\omega_d^2}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 118,
       "question_dir": "question_118",
       "ground_truth": "\\frac{\\omega_{d}}{(s+\\sigma)^{2}+\\omega_{d}^{2}}",
       "baseline_answer": "\\frac{\\omega_d}{(s + \\sigma)^2 + \\omega_d^2}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 119,
@@ -857,7 +857,7 @@
       "question_dir": "question_121",
       "ground_truth": "0.10",
       "baseline_answer": "0.1",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 122,
@@ -878,7 +878,7 @@
       "question_dir": "question_124",
       "ground_truth": "\\frac{1}{b-a}\\left(e^{-a t}-e^{-b t}\\right)",
       "baseline_answer": "\\frac{1}{b-a} \\left( e^{-at} - e^{-bt} \\right)",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 125,
@@ -955,7 +955,7 @@
       "question_dir": "question_135",
       "ground_truth": "3e8",
       "baseline_answer": "3 \\times 10^8",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 136,
@@ -1053,14 +1053,14 @@
       "question_dir": "question_149",
       "ground_truth": "1.4903e4",
       "baseline_answer": "1.4910 \\times 10^4",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 150,
       "question_dir": "question_150",
       "ground_truth": "4.03188",
       "baseline_answer": "4.00000",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 151,
@@ -1074,7 +1074,7 @@
       "question_dir": "question_152",
       "ground_truth": "4100",
       "baseline_answer": "4092",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 153,
@@ -1088,7 +1088,7 @@
       "question_dir": "question_154",
       "ground_truth": "0.264",
       "baseline_answer": "0.265",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 155,
@@ -1130,14 +1130,14 @@
       "question_dir": "question_160",
       "ground_truth": "13.1",
       "baseline_answer": "13.0",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 161,
       "question_dir": "question_161",
       "ground_truth": "4080",
       "baseline_answer": "4.080 \\times 10^3",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 162,
@@ -1200,14 +1200,14 @@
       "question_dir": "question_170",
       "ground_truth": "24.310",
       "baseline_answer": "24.220",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 171,
       "question_dir": "question_171",
       "ground_truth": "1.87e6",
       "baseline_answer": "1.88 \\times 10^6",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 172,
@@ -1228,14 +1228,14 @@
       "question_dir": "question_174",
       "ground_truth": "3.89e-10",
       "baseline_answer": "3.90 \\times 10^{-10}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 175,
       "question_dir": "question_175",
       "ground_truth": "9e11",
       "baseline_answer": "9 \\times 10^{11}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 176,
@@ -1256,21 +1256,21 @@
       "question_dir": "question_178",
       "ground_truth": "5.89e-7",
       "baseline_answer": "5.89 \\times 10^{-7}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 179,
       "question_dir": "question_179",
       "ground_truth": "7.4e-12",
       "baseline_answer": "7.4 \\times 10^{-12}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 180,
       "question_dir": "question_180",
       "ground_truth": "7.353e14",
       "baseline_answer": "7.350 \\times 10^{14}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 181,
@@ -1326,7 +1326,7 @@
       "question_dir": "question_188",
       "ground_truth": "700",
       "baseline_answer": "703",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 189,
@@ -1340,7 +1340,7 @@
       "question_dir": "question_190",
       "ground_truth": "8.64",
       "baseline_answer": "8.61",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 191,
@@ -1354,7 +1354,7 @@
       "question_dir": "question_192",
       "ground_truth": "188",
       "baseline_answer": "187",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 193,
@@ -1368,7 +1368,7 @@
       "question_dir": "question_194",
       "ground_truth": "7.26e6",
       "baseline_answer": "7.26 \\times 10^6",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 195,
@@ -1382,7 +1382,7 @@
       "question_dir": "question_196",
       "ground_truth": "181.3",
       "baseline_answer": "182.7",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 197,
@@ -1396,7 +1396,7 @@
       "question_dir": "question_198",
       "ground_truth": "2.55e-10",
       "baseline_answer": "2.55 \\times 10^{-10}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 199,
@@ -1410,7 +1410,7 @@
       "question_dir": "question_200",
       "ground_truth": "7.25e-11",
       "baseline_answer": "0.45 \\times 10^{-10} \\, \\text{m}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 201,
@@ -1543,7 +1543,7 @@
       "question_dir": "question_219",
       "ground_truth": "41.9",
       "baseline_answer": "42.3",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 220,
@@ -1613,7 +1613,7 @@
       "question_dir": "question_229",
       "ground_truth": "50.7",
       "baseline_answer": "51",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 230,
@@ -1627,14 +1627,14 @@
       "question_dir": "question_231",
       "ground_truth": "100",
       "baseline_answer": "100\\%",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 232,
       "question_dir": "question_232",
       "ground_truth": "6.5e-2",
       "baseline_answer": "6.5 \\times 10^{-2}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 233,
@@ -1683,7 +1683,7 @@
       "question_dir": "question_239",
       "ground_truth": "8.49e-4",
       "baseline_answer": "8.49 \\times 10^{-4}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 240,
@@ -1753,14 +1753,14 @@
       "question_dir": "question_249",
       "ground_truth": "\\frac{K-1}{L}",
       "baseline_answer": "-\\frac{K-1}{L}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 250,
       "question_dir": "question_250",
       "ground_truth": "SRAC=LRAC",
       "baseline_answer": "\\text{SRAC} = \\text{LRAC}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 251,
@@ -1830,7 +1830,7 @@
       "question_dir": "question_260",
       "ground_truth": "X_{d}=125-1.25 P",
       "baseline_answer": "X_d = 125 - 1.25P",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 261,
@@ -1851,21 +1851,21 @@
       "question_dir": "question_263",
       "ground_truth": "1.07e16",
       "baseline_answer": "1.06 \\times 10^{16}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 264,
       "question_dir": "question_264",
       "ground_truth": "2.88e-19",
       "baseline_answer": "2.89 \\times 10^{-19} \\, \\text{J}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 265,
       "question_dir": "question_265",
       "ground_truth": "1.325e-27",
       "baseline_answer": "1.325 \\times 10^{-27}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 266,
@@ -1879,14 +1879,14 @@
       "question_dir": "question_267",
       "ground_truth": "4.6e-24",
       "baseline_answer": "4.564 \\times 10^{-24} \\, \\text{m}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 268,
       "question_dir": "question_268",
       "ground_truth": "\\frac{1}{3} E_{1}+\\frac{2}{3} E_{2}",
       "baseline_answer": "\\frac{1}{3} E_1 + \\frac{2}{3} E_2",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 269,

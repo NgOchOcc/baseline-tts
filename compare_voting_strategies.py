@@ -11,7 +11,7 @@ from typing import List, Optional, Dict, Tuple
 from pathlib import Path
 
 # Import standard utilities
-from minerva_utils import verify_answer, verify_answer_smart
+from minerva_utils import verify_answer
 
 # Import voting functions
 from minerva_voting_evaluation import (
@@ -91,7 +91,7 @@ def compare_strategies():
                     selected_answer = AGG_FN_MAP[strategy](x_list, v_list)
 
                 strategy_answers[strategy] = selected_answer
-                is_correct = verify_answer_smart(f"\\boxed{{{selected_answer}}}", ground_truth) if selected_answer else False
+                is_correct = verify_answer(f"\\boxed{{{selected_answer}}}", ground_truth, use_math_verify=False) if selected_answer else False
                 strategy_correctness_map[strategy] = is_correct
 
                 if is_correct:

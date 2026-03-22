@@ -1,19 +1,91 @@
-"""
-Comprehensive voting evaluation for MINERVA questions.
-Applies all voting strategies from vote_utils.py and generates avg_result.json
-Uses standard extract and verify functions from minerva.py via minerva_utils.py
-"""
-
 import os
 import json
 from collections import Counter, defaultdict
 from typing import List, Optional, Dict, Tuple
 from pathlib import Path
 
-# Import standard utilities
-from minerva_utils import extract_boxed_answer, verify_answer, verify_answer_smart
 
-# ── Voting Functions (from vote_utils.py) ──────────────────────────────────
+
+def extract_boxed_answer(text: str) -> Optional[str]:
+    results = []
+    idx = 0
+    while True:
+        start = text.find(r'\boxed{', idx)
+        if start == -1:
+            break
+        brace_start = start + len(r'\boxed{')
+        depth = 1
+        i = brace_start
+        while i < len(text) and depth > 0:
+            if text[i] == '{':
+                depth += 1
+            elif text[i] == '}':
+                depth -= 1
+            i += 1
+        if depth == 0:
+            results.append(text[brace_start:i-1].strip())
+        idx = i
+    return results[-1] if results else None
+
+
+def verify_answer(
+    response: str,
+    ground_truth: str,
+    use_math_verify: bool = False,
+) -> bool:
+    if use_math_verify:
+        try:
+            from math_verify import verify, parse
+            from math_verify.parser import ExprExtractionConfig, LatexExtractionConfig
+
+            gold_parsed = parse(
+                f"\\boxed{{{ground_truth}}}",
+                extraction_config=[LatexExtractionConfig()]
+            )
+            pred_parsed = parse(
+                response,
+                extraction_config=[ExprExtractionConfig(), LatexExtractionConfig()]
+            )
+            return bool(verify(gold_parsed, pred_parsed))
+        except (ImportError, Exception):
+            # Fall through to string matching
+            pass
+
+    # Fallback: extract boxed + string match
+    pred = extract_boxed_answer(response)
+    if pred is None:
+        return False
+    return pred.strip() == ground_truth.strip()
+
+
+# Use verify_answer from minerva_utils for standard verification
+def verify_answer(response: str, ground_truth: str, use_math_verify: bool = False) -> bool:
+    """Standard verification from minerva.py"""
+    from minerva_utils import extract_boxed_answer as extract_answer
+
+    if use_math_verify:
+        try:
+            from math_verify import verify, parse
+            from math_verify.parser import ExprExtractionConfig, LatexExtractionConfig
+            gold_parsed = parse(
+                f"\\boxed{{{ground_truth}}}",
+                extraction_config=[LatexExtractionConfig()]
+            )
+            pred_parsed = parse(
+                response,
+                extraction_config=[ExprExtractionConfig(), LatexExtractionConfig()]
+            )
+            return bool(verify(gold_parsed, pred_parsed))
+        except (ImportError, Exception):
+            pass
+
+    # Fallback: extract boxed + string match
+    pred = extract_answer(response)
+    if pred is None:
+        return False
+    return pred.strip() == ground_truth.strip()
+
+
 
 MAJORITY_VOTE = "majority_vote"
 PRM_MIN_MAX = "prm_min_max"
@@ -187,8 +259,8 @@ def evaluate_all_strategies():
                     selected_answer = AGG_FN_MAP[strategy](x_list, v_list)
 
                 if selected_answer:
-                    # Verify answer using smart comparison (numeric + string matching)
-                    is_correct = verify_answer_smart(f"\\boxed{{{selected_answer}}}", ground_truth)
+                    # Verify answer using standard minerva.py verification
+                    is_correct = verify_answer(f"\\boxed{{{selected_answer}}}", ground_truth, use_math_verify=False)
                 else:
                     is_correct = False
 
