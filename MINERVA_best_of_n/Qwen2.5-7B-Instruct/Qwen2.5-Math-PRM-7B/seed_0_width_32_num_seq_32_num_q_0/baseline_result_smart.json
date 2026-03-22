@@ -1,0 +1,1913 @@
+{
+  "summary": {
+    "total": 272,
+    "correct": 117,
+    "accuracy": 0.43014705882352944
+  },
+  "detailed_results": [
+    {
+      "idx": 0,
+      "question_dir": "question_0",
+      "ground_truth": "1.6",
+      "baseline_answer": "1.57",
+      "is_correct": true
+    },
+    {
+      "idx": 1,
+      "question_dir": "question_1",
+      "ground_truth": "4.5e33",
+      "baseline_answer": "1.4 \\times 10^{31} \\, \\text{erg/s}",
+      "is_correct": false
+    },
+    {
+      "idx": 2,
+      "question_dir": "question_2",
+      "ground_truth": "41.8",
+      "baseline_answer": "41.8",
+      "is_correct": true
+    },
+    {
+      "idx": 3,
+      "question_dir": "question_3",
+      "ground_truth": "20.39",
+      "baseline_answer": "20.39",
+      "is_correct": true
+    },
+    {
+      "idx": 4,
+      "question_dir": "question_4",
+      "ground_truth": "0.006",
+      "baseline_answer": "0.006",
+      "is_correct": true
+    },
+    {
+      "idx": 5,
+      "question_dir": "question_5",
+      "ground_truth": "np.arcsin(10/13)",
+      "baseline_answer": "\\arcsin{\\left(\\frac{1}{1.3}\\right)}",
+      "is_correct": false
+    },
+    {
+      "idx": 6,
+      "question_dir": "question_6",
+      "ground_truth": "0.49",
+      "baseline_answer": "0.062",
+      "is_correct": false
+    },
+    {
+      "idx": 7,
+      "question_dir": "question_7",
+      "ground_truth": "100",
+      "baseline_answer": "100",
+      "is_correct": true
+    },
+    {
+      "idx": 8,
+      "question_dir": "question_8",
+      "ground_truth": "0.022",
+      "baseline_answer": "0.0217",
+      "is_correct": true
+    },
+    {
+      "idx": 9,
+      "question_dir": "question_9",
+      "ground_truth": "9.6",
+      "baseline_answer": "7.1 \\, \\text{Angstroms}",
+      "is_correct": false
+    },
+    {
+      "idx": 10,
+      "question_dir": "question_10",
+      "ground_truth": "3.83e35",
+      "baseline_answer": "2.52 \\times 10^{37} \\text{ ergs/s}",
+      "is_correct": false
+    },
+    {
+      "idx": 11,
+      "question_dir": "question_11",
+      "ground_truth": "300",
+      "baseline_answer": "578 \\, \\text{km/s}",
+      "is_correct": false
+    },
+    {
+      "idx": 12,
+      "question_dir": "question_12",
+      "ground_truth": "\\frac{2 \\pi c^{2} R^{2}}{\\lambda^{5}\\left[e^{h c /(\\lambda k T)}-1\\right] d^{2}}",
+      "baseline_answer": "\\frac{2 \\pi c^2 R^2}{d^2 \\lambda^5 \\left[ e^{h c / (\\lambda k T)} - 1 \\right]}",
+      "is_correct": false
+    },
+    {
+      "idx": 13,
+      "question_dir": "question_13",
+      "ground_truth": "8.7e8",
+      "baseline_answer": "8.68 \\times 10^{10} \\, \\text{cm}",
+      "is_correct": false
+    },
+    {
+      "idx": 14,
+      "question_dir": "question_14",
+      "ground_truth": "0.003",
+      "baseline_answer": "0.003",
+      "is_correct": true
+    },
+    {
+      "idx": 15,
+      "question_dir": "question_15",
+      "ground_truth": "4e33",
+      "baseline_answer": "4 \\times 10^{33}",
+      "is_correct": true
+    },
+    {
+      "idx": 16,
+      "question_dir": "question_16",
+      "ground_truth": "4.49",
+      "baseline_answer": "9.12 \\times 10^{-6} \\, \\text{cm}",
+      "is_correct": false
+    },
+    {
+      "idx": 17,
+      "question_dir": "question_17",
+      "ground_truth": "0.01",
+      "baseline_answer": "0.0122",
+      "is_correct": false
+    },
+    {
+      "idx": 18,
+      "question_dir": "question_18",
+      "ground_truth": "3.3e12",
+      "baseline_answer": "3.052 \\times 10^{11} \\text{ cm}",
+      "is_correct": false
+    },
+    {
+      "idx": 19,
+      "question_dir": "question_19",
+      "ground_truth": "10",
+      "baseline_answer": "40",
+      "is_correct": false
+    },
+    {
+      "idx": 20,
+      "question_dir": "question_20",
+      "ground_truth": "6630",
+      "baseline_answer": "6631",
+      "is_correct": true
+    },
+    {
+      "idx": 21,
+      "question_dir": "question_21",
+      "ground_truth": "1.2",
+      "baseline_answer": "1.47",
+      "is_correct": false
+    },
+    {
+      "idx": 22,
+      "question_dir": "question_22",
+      "ground_truth": "3e6",
+      "baseline_answer": "4",
+      "is_correct": false
+    },
+    {
+      "idx": 23,
+      "question_dir": "question_23",
+      "ground_truth": "7e37",
+      "baseline_answer": "7.704 \\times 10^{37} \\, \\text{erg} \\cdot \\text{s}^{-1}",
+      "is_correct": false
+    },
+    {
+      "idx": 24,
+      "question_dir": "question_24",
+      "ground_truth": "50",
+      "baseline_answer": "48",
+      "is_correct": false
+    },
+    {
+      "idx": 25,
+      "question_dir": "question_25",
+      "ground_truth": "\\frac{a M^{1 / 3}}{G M^{2 / 3}+b}",
+      "baseline_answer": "R(M) \\propto M^{1/3} \\text{ for lower masses and } R(M) \\propto M^{-1/3} \\text{ for higher masses}",
+      "is_correct": false
+    },
+    {
+      "idx": 26,
+      "question_dir": "question_26",
+      "ground_truth": "7.5e7",
+      "baseline_answer": "9700",
+      "is_correct": false
+    },
+    {
+      "idx": 27,
+      "question_dir": "question_27",
+      "ground_truth": "\\frac{dM}{dt}=\\frac{10^{5} L_{\\odot}}{0.007 c^{2} M_{\\odot}^{6}} M^{6}",
+      "baseline_answer": "\\frac{dM}{dt} = \\frac{10^8 L_{\\odot} M^6}{c^2 M_{\\odot}^6}",
+      "is_correct": false
+    },
+    {
+      "idx": 28,
+      "question_dir": "question_28",
+      "ground_truth": "\\left[P_{0}^{2 / 5}-\\frac{2}{5} g K^{-3 / 5} z\\right]^{5 / 2}",
+      "baseline_answer": "P = \\left( P_0^{2/5} - \\frac{G M z^2}{5 R^3} \\right)^{5/2}",
+      "is_correct": false
+    },
+    {
+      "idx": 29,
+      "question_dir": "question_29",
+      "ground_truth": "1.75",
+      "baseline_answer": "1.75",
+      "is_correct": true
+    },
+    {
+      "idx": 30,
+      "question_dir": "question_30",
+      "ground_truth": "\\sqrt{4 \\pi G \\rho_{0} r_{0}^{2}}",
+      "baseline_answer": "v(r) = \\sqrt{2\\pi G \\rho_0 r_0^2 r}",
+      "is_correct": false
+    },
+    {
+      "idx": 31,
+      "question_dir": "question_31",
+      "ground_truth": "0.33",
+      "baseline_answer": "0.420",
+      "is_correct": false
+    },
+    {
+      "idx": 32,
+      "question_dir": "question_32",
+      "ground_truth": "27.39",
+      "baseline_answer": "27.39",
+      "is_correct": true
+    },
+    {
+      "idx": 33,
+      "question_dir": "question_33",
+      "ground_truth": "24.4",
+      "baseline_answer": "24.4",
+      "is_correct": true
+    },
+    {
+      "idx": 34,
+      "question_dir": "question_34",
+      "ground_truth": "0.05",
+      "baseline_answer": "0.0604",
+      "is_correct": false
+    },
+    {
+      "idx": 35,
+      "question_dir": "question_35",
+      "ground_truth": "\\arcsin{1.3 \\sin{\\theta_w}}",
+      "baseline_answer": "\\theta_a = \\arcsin(1.3 \\sin(\\theta_w))",
+      "is_correct": false
+    },
+    {
+      "idx": 36,
+      "question_dir": "question_36",
+      "ground_truth": "0.15",
+      "baseline_answer": "0.1474",
+      "is_correct": true
+    },
+    {
+      "idx": 37,
+      "question_dir": "question_37",
+      "ground_truth": "2e27",
+      "baseline_answer": "2 \\times 10^{27} \\, \\text{cm}",
+      "is_correct": true
+    },
+    {
+      "idx": 38,
+      "question_dir": "question_38",
+      "ground_truth": "-1./3",
+      "baseline_answer": "\\frac{3}{2}",
+      "is_correct": false
+    },
+    {
+      "idx": 39,
+      "question_dir": "question_39",
+      "ground_truth": "0.033",
+      "baseline_answer": "0.0334",
+      "is_correct": true
+    },
+    {
+      "idx": 40,
+      "question_dir": "question_40",
+      "ground_truth": "0.5613",
+      "baseline_answer": "0.562",
+      "is_correct": true
+    },
+    {
+      "idx": 41,
+      "question_dir": "question_41",
+      "ground_truth": "\\frac{v_{0}}{r_{0}} \\frac{1}{\\left(1+r / r_{0}\\right)^{3 / 2}}",
+      "baseline_answer": "\\frac{v_0}{r_0 \\left(1 + \\frac{r}{r_0}\\right)^{3/2}}",
+      "is_correct": false
+    },
+    {
+      "idx": 42,
+      "question_dir": "question_42",
+      "ground_truth": "2.75e11",
+      "baseline_answer": "2.76 \\times 10^{12} \\text{ cm}",
+      "is_correct": false
+    },
+    {
+      "idx": 43,
+      "question_dir": "question_43",
+      "ground_truth": "6e13",
+      "baseline_answer": "6e12",
+      "is_correct": false
+    },
+    {
+      "idx": 44,
+      "question_dir": "question_44",
+      "ground_truth": "1e-5",
+      "baseline_answer": "0.00001",
+      "is_correct": true
+    },
+    {
+      "idx": 45,
+      "question_dir": "question_45",
+      "ground_truth": "-10",
+      "baseline_answer": "-28.495",
+      "is_correct": false
+    },
+    {
+      "idx": 46,
+      "question_dir": "question_46",
+      "ground_truth": "15625",
+      "baseline_answer": "15625",
+      "is_correct": true
+    },
+    {
+      "idx": 47,
+      "question_dir": "question_47",
+      "ground_truth": "1e-3",
+      "baseline_answer": "0.001",
+      "is_correct": true
+    },
+    {
+      "idx": 48,
+      "question_dir": "question_48",
+      "ground_truth": "3",
+      "baseline_answer": "5",
+      "is_correct": false
+    },
+    {
+      "idx": 49,
+      "question_dir": "question_49",
+      "ground_truth": "-3./2",
+      "baseline_answer": "-\\frac{1}{2}",
+      "is_correct": false
+    },
+    {
+      "idx": 50,
+      "question_dir": "question_50",
+      "ground_truth": "2.7778e-6",
+      "baseline_answer": "2.78 \\times 10^{-7}",
+      "is_correct": false
+    },
+    {
+      "idx": 51,
+      "question_dir": "question_51",
+      "ground_truth": "-7",
+      "baseline_answer": "-7",
+      "is_correct": true
+    },
+    {
+      "idx": 52,
+      "question_dir": "question_52",
+      "ground_truth": "48",
+      "baseline_answer": "483 \\, \\AA",
+      "is_correct": false
+    },
+    {
+      "idx": 53,
+      "question_dir": "question_53",
+      "ground_truth": "16",
+      "baseline_answer": "16",
+      "is_correct": true
+    },
+    {
+      "idx": 54,
+      "question_dir": "question_54",
+      "ground_truth": "0.192",
+      "baseline_answer": "0.192",
+      "is_correct": true
+    },
+    {
+      "idx": 55,
+      "question_dir": "question_55",
+      "ground_truth": "0.5978",
+      "baseline_answer": "0.92",
+      "is_correct": false
+    },
+    {
+      "idx": 56,
+      "question_dir": "question_56",
+      "ground_truth": "11000",
+      "baseline_answer": "11000",
+      "is_correct": true
+    },
+    {
+      "idx": 57,
+      "question_dir": "question_57",
+      "ground_truth": "0.53",
+      "baseline_answer": "0.533",
+      "is_correct": true
+    },
+    {
+      "idx": 58,
+      "question_dir": "question_58",
+      "ground_truth": "15000",
+      "baseline_answer": "15,000 \\, \\text{kcal/m}^2\\text{/yr}",
+      "is_correct": false
+    },
+    {
+      "idx": 59,
+      "question_dir": "question_59",
+      "ground_truth": "1538",
+      "baseline_answer": "1538",
+      "is_correct": true
+    },
+    {
+      "idx": 60,
+      "question_dir": "question_60",
+      "ground_truth": "4.4e7",
+      "baseline_answer": "44241339",
+      "is_correct": true
+    },
+    {
+      "idx": 61,
+      "question_dir": "question_61",
+      "ground_truth": "I(0)",
+      "baseline_answer": "I(0)",
+      "is_correct": true
+    },
+    {
+      "idx": 62,
+      "question_dir": "question_62",
+      "ground_truth": "y^{\\prime}+r y-r x(t)=0",
+      "baseline_answer": "y'(t) + \\frac{r}{V} y(t) = r c \\left( 1 - e^{-\\frac{rt}{V}} \\right)",
+      "is_correct": false
+    },
+    {
+      "idx": 63,
+      "question_dir": "question_63",
+      "ground_truth": "c x^{-2}-\\frac{\\cos (2 x)}{2 x^{2}}",
+      "baseline_answer": "y = -\\frac{1}{2x^2} \\cos(2x) + \\frac{C}{x^2}",
+      "is_correct": false
+    },
+    {
+      "idx": 64,
+      "question_dir": "question_64",
+      "ground_truth": "\\frac{d x}{d t}=k x-a",
+      "baseline_answer": "\\frac{dx(t)}{dt} = kx(t) - a",
+      "is_correct": false
+    },
+    {
+      "idx": 65,
+      "question_dir": "question_65",
+      "ground_truth": "4",
+      "baseline_answer": "4",
+      "is_correct": true
+    },
+    {
+      "idx": 66,
+      "question_dir": "question_66",
+      "ground_truth": "2",
+      "baseline_answer": "2",
+      "is_correct": true
+    },
+    {
+      "idx": 67,
+      "question_dir": "question_67",
+      "ground_truth": "1+\\sqrt{3} i",
+      "baseline_answer": "1 + \\sqrt{3} i",
+      "is_correct": true
+    },
+    {
+      "idx": 68,
+      "question_dir": "question_68",
+      "ground_truth": "0",
+      "baseline_answer": "0",
+      "is_correct": true
+    },
+    {
+      "idx": 69,
+      "question_dir": "question_69",
+      "ground_truth": "-0.875",
+      "baseline_answer": "-0.875",
+      "is_correct": true
+    },
+    {
+      "idx": 70,
+      "question_dir": "question_70",
+      "ground_truth": "\\sqrt{2} \\cos (2 t-\\pi / 4)",
+      "baseline_answer": "\\sqrt{2} \\cos\\left(2t - \\frac{\\pi}{4}\\right)",
+      "is_correct": false
+    },
+    {
+      "idx": 71,
+      "question_dir": "question_71",
+      "ground_truth": "\\frac{1}{2a}(\\exp{a*t} - \\exp{-a*t})",
+      "baseline_answer": "\\frac{1}{2a} \\sinh(at)",
+      "is_correct": false
+    },
+    {
+      "idx": 72,
+      "question_dir": "question_72",
+      "ground_truth": "x_{0} \\cos (\\omega t)+$ $\\dot{x}_{0} \\sin (\\omega t) / \\omega",
+      "baseline_answer": "x(t) = x_0 \\cos(\\omega t) + \\frac{\\dot{x}_0}{\\omega} \\sin(\\omega t)",
+      "is_correct": false
+    },
+    {
+      "idx": 73,
+      "question_dir": "question_73",
+      "ground_truth": "\\ln 2 + i\\pi / 3",
+      "baseline_answer": "\\ln 2 + \\frac{\\pi}{3} i",
+      "is_correct": false
+    },
+    {
+      "idx": 74,
+      "question_dir": "question_74",
+      "ground_truth": "e^{t} / 3",
+      "baseline_answer": "\\frac{1}{3} e^t",
+      "is_correct": false
+    },
+    {
+      "idx": 75,
+      "question_dir": "question_75",
+      "ground_truth": "2",
+      "baseline_answer": "2",
+      "is_correct": true
+    },
+    {
+      "idx": 76,
+      "question_dir": "question_76",
+      "ground_truth": "\\frac{\\cos (2 t)}{15}+C_{1} e^{t}+C_{2} e^{-t}+C_{3} \\cos (t)+C_{4} \\sin (t)",
+      "baseline_answer": "C_1 e^t + C_2 e^{-t} + C_3 \\cos(t) + C_4 \\sin(t) + \\frac{\\cos(2t)}{15}",
+      "is_correct": false
+    },
+    {
+      "idx": 77,
+      "question_dir": "question_77",
+      "ground_truth": "\\frac{1}{4-\\omega^{2}}",
+      "baseline_answer": "\\frac{1}{4 - \\omega^2}",
+      "is_correct": true
+    },
+    {
+      "idx": 78,
+      "question_dir": "question_78",
+      "ground_truth": "\\frac{\\cos (2 t)+\\sin (2 t)}{4}",
+      "baseline_answer": "\\frac{1}{4\\sqrt{2}} \\cos\\left(2t - \\frac{\\pi}{4}\\right)",
+      "is_correct": false
+    },
+    {
+      "idx": 79,
+      "question_dir": "question_79",
+      "ground_truth": "-0.2",
+      "baseline_answer": "-\\frac{1}{5}",
+      "is_correct": false
+    },
+    {
+      "idx": 80,
+      "question_dir": "question_80",
+      "ground_truth": "x / 2-1 / 4+c e^{-2 x}",
+      "baseline_answer": "y = \\frac{1}{2} x - \\frac{1}{4} + Ce^{-2x}",
+      "is_correct": false
+    },
+    {
+      "idx": 81,
+      "question_dir": "question_81",
+      "ground_truth": "\\frac{e^{-2 t}}{15}+C_{1} e^{t}+C_{2} e^{-t}+ C_{3} \\cos (t)+C_{4} \\sin (t)",
+      "baseline_answer": "C_1 e^t + C_2 e^{-t} + C_3 \\cos t + C_4 \\sin t + \\frac{1}{15} e^{-2t}",
+      "is_correct": false
+    },
+    {
+      "idx": 82,
+      "question_dir": "question_82",
+      "ground_truth": "s^{2}+\\omega^{2}",
+      "baseline_answer": "s^2 + \\omega^2",
+      "is_correct": true
+    },
+    {
+      "idx": 83,
+      "question_dir": "question_83",
+      "ground_truth": "2 \\cos (\\pi t+\\pi / 3)",
+      "baseline_answer": "2 \\cos\\left(\\pi t + \\frac{\\pi}{3}\\right)",
+      "is_correct": false
+    },
+    {
+      "idx": 84,
+      "question_dir": "question_84",
+      "ground_truth": "2 \\pi / \\omega",
+      "baseline_answer": "\\frac{2\\pi}{\\omega}",
+      "is_correct": false
+    },
+    {
+      "idx": 85,
+      "question_dir": "question_85",
+      "ground_truth": "\\frac{4 A}{3+3 i} e^{i t}",
+      "baseline_answer": "A e^{i t}",
+      "is_correct": false
+    },
+    {
+      "idx": 86,
+      "question_dir": "question_86",
+      "ground_truth": "I(0) e^{-\\frac{t}{R C}}",
+      "baseline_answer": "I(t) = I_0 e^{-\\frac{t}{RC}}",
+      "is_correct": false
+    },
+    {
+      "idx": 87,
+      "question_dir": "question_87",
+      "ground_truth": "\\frac{e^{2 i t}}{(2+2 i)}",
+      "baseline_answer": "\\frac{1}{3}",
+      "is_correct": false
+    },
+    {
+      "idx": 88,
+      "question_dir": "question_88",
+      "ground_truth": "\\frac{2-\\omega^{2}-\\omega i / 4}{\\omega^{4}-\\frac{63}{16} \\omega^{2}+4}",
+      "baseline_answer": "\\frac{1}{-\\omega^2 + \\frac{1}{4} i \\omega + 2}",
+      "is_correct": false
+    },
+    {
+      "idx": 89,
+      "question_dir": "question_89",
+      "ground_truth": "x^{\\prime}+\\frac{r}{V} x-r c=0",
+      "baseline_answer": "\\frac{dx(t)}{dt} - \\frac{r}{V} x(t) = c \\cdot r",
+      "is_correct": false
+    },
+    {
+      "idx": 90,
+      "question_dir": "question_90",
+      "ground_truth": "-t^2 - t - 3",
+      "baseline_answer": "C_1 e^t + C_2 e^{-t} - t^2 - t - 3",
+      "is_correct": false
+    },
+    {
+      "idx": 91,
+      "question_dir": "question_91",
+      "ground_truth": "-8",
+      "baseline_answer": "-8",
+      "is_correct": true
+    },
+    {
+      "idx": 92,
+      "question_dir": "question_92",
+      "ground_truth": "\\frac{\\cos (2 t)}{15}",
+      "baseline_answer": "\\frac{1}{15} \\cos(2t)",
+      "is_correct": false
+    },
+    {
+      "idx": 93,
+      "question_dir": "question_93",
+      "ground_truth": "-2+2 \\sqrt{3} i",
+      "baseline_answer": "-2 + 2\\sqrt{3}i",
+      "is_correct": true
+    },
+    {
+      "idx": 94,
+      "question_dir": "question_94",
+      "ground_truth": "\\frac{t}{4} \\sin (2 t)",
+      "baseline_answer": "C_1 \\cos(2t) + C_2 \\sin(2t) - \\frac{t \\sin(2t)}{4}",
+      "is_correct": false
+    },
+    {
+      "idx": 95,
+      "question_dir": "question_95",
+      "ground_truth": "\\frac{1}{2}(\\exp{a*t} + \\exp{-a*t})",
+      "baseline_answer": "\\cosh(at)",
+      "is_correct": false
+    },
+    {
+      "idx": 96,
+      "question_dir": "question_96",
+      "ground_truth": "\\frac{e^{t}} {3}+c e^{-2 t}",
+      "baseline_answer": "x = \\frac{1}{3} e^t + C e^{-2t}",
+      "is_correct": false
+    },
+    {
+      "idx": 97,
+      "question_dir": "question_97",
+      "ground_truth": "\\left(\\frac{t^{2}}{2}-t+C\\right) e^{-t}",
+      "baseline_answer": "x(t) = \\left( \\frac{t^2}{2} - t + D \\right) e^{-t} - C e^{-2t}",
+      "is_correct": false
+    },
+    {
+      "idx": 98,
+      "question_dir": "question_98",
+      "ground_truth": "-2",
+      "baseline_answer": "-2",
+      "is_correct": true
+    },
+    {
+      "idx": 99,
+      "question_dir": "question_99",
+      "ground_truth": "\\frac{e^{-2 t}}{15}",
+      "baseline_answer": "\\frac{1}{15} e^{-2t}",
+      "is_correct": false
+    },
+    {
+      "idx": 100,
+      "question_dir": "question_100",
+      "ground_truth": "m",
+      "baseline_answer": "m",
+      "is_correct": true
+    },
+    {
+      "idx": 101,
+      "question_dir": "question_101",
+      "ground_truth": "-\\sin (3 t) / 5+ C_{1} \\sin (2 t)+C_{2} \\cos (2 t)",
+      "baseline_answer": "C_1 \\cos(2t) + C_2 \\sin(2t) - \\frac{1}{5} \\sin(3t)",
+      "is_correct": false
+    },
+    {
+      "idx": 102,
+      "question_dir": "question_102",
+      "ground_truth": "\\frac{\\pi}{2}",
+      "baseline_answer": "\\frac{\\pi}{2}",
+      "is_correct": true
+    },
+    {
+      "idx": 103,
+      "question_dir": "question_103",
+      "ground_truth": "s^{2}+b s+1",
+      "baseline_answer": "s^2 + b s + 1",
+      "is_correct": true
+    },
+    {
+      "idx": 104,
+      "question_dir": "question_104",
+      "ground_truth": "\\frac{37}{4} m",
+      "baseline_answer": "\\frac{37}{4} m",
+      "is_correct": true
+    },
+    {
+      "idx": 105,
+      "question_dir": "question_105",
+      "ground_truth": "-8-8 \\sqrt{3} i",
+      "baseline_answer": "-8 - 8\\sqrt{3}i",
+      "is_correct": true
+    },
+    {
+      "idx": 106,
+      "question_dir": "question_106",
+      "ground_truth": "\\frac{\\sqrt{2}}{4} \\cos (t-\\pi / 4)",
+      "baseline_answer": "\\frac{1}{2\\sqrt{2}} \\cos \\left( t - \\frac{\\pi}{4} \\right)",
+      "is_correct": false
+    },
+    {
+      "idx": 107,
+      "question_dir": "question_107",
+      "ground_truth": "2",
+      "baseline_answer": "2",
+      "is_correct": true
+    },
+    {
+      "idx": 108,
+      "question_dir": "question_108",
+      "ground_truth": "\\frac{e^{2 i t}}{(2+2 i)}+C e^{-2 t}",
+      "baseline_answer": "C e^{-2t} + \\frac{1 - i}{4} e^{2it}",
+      "is_correct": false
+    },
+    {
+      "idx": 109,
+      "question_dir": "question_109",
+      "ground_truth": "-\\tau \\ln \\Delta",
+      "baseline_answer": "-\\ln(\\Delta)",
+      "is_correct": false
+    },
+    {
+      "idx": 110,
+      "question_dir": "question_110",
+      "ground_truth": "2.2 \\tau",
+      "baseline_answer": "\\tau \\ln 9",
+      "is_correct": false
+    },
+    {
+      "idx": 111,
+      "question_dir": "question_111",
+      "ground_truth": "\\frac{1}{s+a}",
+      "baseline_answer": "\\frac{1}{a+s}",
+      "is_correct": false
+    },
+    {
+      "idx": 112,
+      "question_dir": "question_112",
+      "ground_truth": "\\omega_{n}^{2} e^{-\\zeta \\omega_{n} t} \\cos \\left(\\omega_{n} \\sqrt{1-\\zeta^{2}} t\\right)-\\frac{\\zeta \\omega_{n}^{2}}{\\sqrt{1-\\zeta^{2}}} e^{-\\zeta \\omega_{n} t} \\sin \\left(\\omega_{n} \\sqrt{1-\\zeta^{2}} t\\right)",
+      "baseline_answer": "\\omega_n e^{-\\zeta \\omega_n t} \\left( \\cos(\\omega_d t) - \\zeta \\sin(\\omega_d t) \\right)",
+      "is_correct": false
+    },
+    {
+      "idx": 113,
+      "question_dir": "question_113",
+      "ground_truth": "\\frac{1}{s+1}-\\frac{e^{-1}}{s}-\\frac{e^{-1} e^{-s}}{s+1}+\\frac{e^{-1} e^{-s}}{s}",
+      "baseline_answer": "\\frac{e^{-(s+1)} - 1}{s+1} - \\frac{e^{-1} (1 - e^{-s})}{s}",
+      "is_correct": false
+    },
+    {
+      "idx": 114,
+      "question_dir": "question_114",
+      "ground_truth": "20",
+      "baseline_answer": "20",
+      "is_correct": true
+    },
+    {
+      "idx": 115,
+      "question_dir": "question_115",
+      "ground_truth": "\\frac{1}{s}-\\frac{1}{s} e^{-s T}",
+      "baseline_answer": "\\frac{1 - e^{-sT}}{s}",
+      "is_correct": false
+    },
+    {
+      "idx": 116,
+      "question_dir": "question_116",
+      "ground_truth": "\\frac{1}{m} t",
+      "baseline_answer": "-\\frac{3k}{m} t^4 u_S(t)",
+      "is_correct": false
+    },
+    {
+      "idx": 117,
+      "question_dir": "question_117",
+      "ground_truth": "\\frac{s+\\sigma}{(s+\\sigma)^{2}+\\omega_{d}^{2}}",
+      "baseline_answer": "\\frac{s + \\sigma}{(s + \\sigma)^2 + \\omega_d^2}",
+      "is_correct": true
+    },
+    {
+      "idx": 118,
+      "question_dir": "question_118",
+      "ground_truth": "\\frac{\\omega_{d}}{(s+\\sigma)^{2}+\\omega_{d}^{2}}",
+      "baseline_answer": "\\frac{\\omega_d}{(s + \\sigma)^2 + \\omega_d^2}",
+      "is_correct": true
+    },
+    {
+      "idx": 119,
+      "question_dir": "question_119",
+      "ground_truth": "m \\frac{d v}{d t}+b v=f",
+      "baseline_answer": "\\frac{dv}{dt} = \\frac{f - b v}{m}",
+      "is_correct": false
+    },
+    {
+      "idx": 120,
+      "question_dir": "question_120",
+      "ground_truth": "1000",
+      "baseline_answer": "1000",
+      "is_correct": true
+    },
+    {
+      "idx": 121,
+      "question_dir": "question_121",
+      "ground_truth": "0.10",
+      "baseline_answer": "0.1",
+      "is_correct": true
+    },
+    {
+      "idx": 122,
+      "question_dir": "question_122",
+      "ground_truth": "(1 - 3e^{-2t} + 2e^{-5t}) u(t)",
+      "baseline_answer": "-1 + 3e^{-2t} - 2e^{-5t}",
+      "is_correct": false
+    },
+    {
+      "idx": 123,
+      "question_dir": "question_123",
+      "ground_truth": "b \\delta(t)+1-e^{-a t}",
+      "baseline_answer": "b + 1 - e^{-at}",
+      "is_correct": false
+    },
+    {
+      "idx": 124,
+      "question_dir": "question_124",
+      "ground_truth": "\\frac{1}{b-a}\\left(e^{-a t}-e^{-b t}\\right)",
+      "baseline_answer": "\\frac{1}{b-a} \\left( e^{-at} - e^{-bt} \\right)",
+      "is_correct": true
+    },
+    {
+      "idx": 125,
+      "question_dir": "question_125",
+      "ground_truth": "I \\frac{d \\omega}{d t}+2 B \\omega=T",
+      "baseline_answer": "\\dot{\\omega} = \\frac{T - 2B\\omega}{I}",
+      "is_correct": false
+    },
+    {
+      "idx": 126,
+      "question_dir": "question_126",
+      "ground_truth": "(t + \\frac{1}{2} \\sin{2t}) u(t)",
+      "baseline_answer": "t - \\frac{1}{2} \\sin(2t)",
+      "is_correct": false
+    },
+    {
+      "idx": 127,
+      "question_dir": "question_127",
+      "ground_truth": "\\frac{1}{L C s^{2}+R C s+1}",
+      "baseline_answer": "\\frac{1}{s (C L s + R) + 1}",
+      "is_correct": false
+    },
+    {
+      "idx": 128,
+      "question_dir": "question_128",
+      "ground_truth": "0.2",
+      "baseline_answer": "\\frac{1}{5}",
+      "is_correct": false
+    },
+    {
+      "idx": 129,
+      "question_dir": "question_129",
+      "ground_truth": "1e-8",
+      "baseline_answer": "10^{-8}",
+      "is_correct": false
+    },
+    {
+      "idx": 130,
+      "question_dir": "question_130",
+      "ground_truth": "100",
+      "baseline_answer": "100",
+      "is_correct": true
+    },
+    {
+      "idx": 131,
+      "question_dir": "question_131",
+      "ground_truth": "\\frac{d^{2} v_{o}}{d t^{2}}+\\frac{v_{o}}{L C}=\\frac{v_{i}}{L C}",
+      "baseline_answer": "L C \\frac{d^2 v_o(t)}{dt^2} + \\frac{d v_o(t)}{dt} = \\frac{d v_i(t)}{dt}",
+      "is_correct": false
+    },
+    {
+      "idx": 132,
+      "question_dir": "question_132",
+      "ground_truth": "m l \\ddot{\\theta}(t)-m g \\sin \\theta(t)=f(t) \\cos \\theta(t)",
+      "baseline_answer": "g \\tan \\theta + \\frac{f(t)}{m} = l \\left( \\cos \\theta \\left( \\frac{d \\theta}{dt} \\right)^2 + \\sin \\theta \\frac{d^2 \\theta}{dt^2} \\right)",
+      "is_correct": false
+    },
+    {
+      "idx": 133,
+      "question_dir": "question_133",
+      "ground_truth": "99.9",
+      "baseline_answer": "99.9",
+      "is_correct": true
+    },
+    {
+      "idx": 134,
+      "question_dir": "question_134",
+      "ground_truth": "0.05",
+      "baseline_answer": "0.05",
+      "is_correct": true
+    },
+    {
+      "idx": 135,
+      "question_dir": "question_135",
+      "ground_truth": "3e8",
+      "baseline_answer": "3 \\times 10^8",
+      "is_correct": true
+    },
+    {
+      "idx": 136,
+      "question_dir": "question_136",
+      "ground_truth": "1e11",
+      "baseline_answer": "10^{11}",
+      "is_correct": false
+    },
+    {
+      "idx": 137,
+      "question_dir": "question_137",
+      "ground_truth": "\\frac{1}{\\sqrt{2}}c",
+      "baseline_answer": "\\frac{c\\sqrt{2}}{2}",
+      "is_correct": false
+    },
+    {
+      "idx": 138,
+      "question_dir": "question_138",
+      "ground_truth": "m_{p} c^{2}\\left(\\gamma^{2}-1\\right) \\sin ^{2} \\theta",
+      "baseline_answer": "2\\gamma m_p \\cos\\left(\\frac{\\theta}{2}\\right)",
+      "is_correct": false
+    },
+    {
+      "idx": 139,
+      "question_dir": "question_139",
+      "ground_truth": "\\lambda_{\\text {red}} / \\sqrt{2}",
+      "baseline_answer": "\\frac{\\lambda_{\\text{red}}}{\\sqrt{3}}",
+      "is_correct": false
+    },
+    {
+      "idx": 140,
+      "question_dir": "question_140",
+      "ground_truth": "10",
+      "baseline_answer": "10",
+      "is_correct": true
+    },
+    {
+      "idx": 141,
+      "question_dir": "question_141",
+      "ground_truth": "5",
+      "baseline_answer": "5",
+      "is_correct": true
+    },
+    {
+      "idx": 142,
+      "question_dir": "question_142",
+      "ground_truth": "4",
+      "baseline_answer": "2",
+      "is_correct": false
+    },
+    {
+      "idx": 143,
+      "question_dir": "question_143",
+      "ground_truth": "1",
+      "baseline_answer": "10",
+      "is_correct": false
+    },
+    {
+      "idx": 144,
+      "question_dir": "question_144",
+      "ground_truth": "8",
+      "baseline_answer": "10",
+      "is_correct": false
+    },
+    {
+      "idx": 145,
+      "question_dir": "question_145",
+      "ground_truth": "400000",
+      "baseline_answer": "10^6",
+      "is_correct": false
+    },
+    {
+      "idx": 146,
+      "question_dir": "question_146",
+      "ground_truth": "560",
+      "baseline_answer": "557 \\, \\text{nm}",
+      "is_correct": false
+    },
+    {
+      "idx": 147,
+      "question_dir": "question_147",
+      "ground_truth": "671.02",
+      "baseline_answer": "671.02",
+      "is_correct": true
+    },
+    {
+      "idx": 148,
+      "question_dir": "question_148",
+      "ground_truth": "+2",
+      "baseline_answer": "+1",
+      "is_correct": false
+    },
+    {
+      "idx": 149,
+      "question_dir": "question_149",
+      "ground_truth": "1.4903e4",
+      "baseline_answer": "1.4910 \\times 10^4",
+      "is_correct": true
+    },
+    {
+      "idx": 150,
+      "question_dir": "question_150",
+      "ground_truth": "4.03188",
+      "baseline_answer": "4.00000",
+      "is_correct": true
+    },
+    {
+      "idx": 151,
+      "question_dir": "question_151",
+      "ground_truth": "566",
+      "baseline_answer": "566",
+      "is_correct": true
+    },
+    {
+      "idx": 152,
+      "question_dir": "question_152",
+      "ground_truth": "4100",
+      "baseline_answer": "4092",
+      "is_correct": true
+    },
+    {
+      "idx": 153,
+      "question_dir": "question_153",
+      "ground_truth": "2.78",
+      "baseline_answer": "3.41",
+      "is_correct": false
+    },
+    {
+      "idx": 154,
+      "question_dir": "question_154",
+      "ground_truth": "0.264",
+      "baseline_answer": "0.265",
+      "is_correct": true
+    },
+    {
+      "idx": 155,
+      "question_dir": "question_155",
+      "ground_truth": "4.4677",
+      "baseline_answer": "4.4748 \\times 10^{14} \\, \\text{Hz}",
+      "is_correct": false
+    },
+    {
+      "idx": 156,
+      "question_dir": "question_156",
+      "ground_truth": "1.77e-6",
+      "baseline_answer": "2.16 \\times 10^{-6}",
+      "is_correct": false
+    },
+    {
+      "idx": 157,
+      "question_dir": "question_157",
+      "ground_truth": "1.3",
+      "baseline_answer": "1.3",
+      "is_correct": true
+    },
+    {
+      "idx": 158,
+      "question_dir": "question_158",
+      "ground_truth": "5.47e5",
+      "baseline_answer": "2.66 \\times 10^{22}",
+      "is_correct": false
+    },
+    {
+      "idx": 159,
+      "question_dir": "question_159",
+      "ground_truth": "1.9",
+      "baseline_answer": "1.9",
+      "is_correct": true
+    },
+    {
+      "idx": 160,
+      "question_dir": "question_160",
+      "ground_truth": "13.1",
+      "baseline_answer": "13.0",
+      "is_correct": true
+    },
+    {
+      "idx": 161,
+      "question_dir": "question_161",
+      "ground_truth": "4080",
+      "baseline_answer": "4.080 \\times 10^3",
+      "is_correct": true
+    },
+    {
+      "idx": 162,
+      "question_dir": "question_162",
+      "ground_truth": "1.22",
+      "baseline_answer": "1.22",
+      "is_correct": true
+    },
+    {
+      "idx": 163,
+      "question_dir": "question_163",
+      "ground_truth": "2.19e6",
+      "baseline_answer": "1.01 \\times 10^6",
+      "is_correct": false
+    },
+    {
+      "idx": 164,
+      "question_dir": "question_164",
+      "ground_truth": "6.62",
+      "baseline_answer": "26.82",
+      "is_correct": false
+    },
+    {
+      "idx": 165,
+      "question_dir": "question_165",
+      "ground_truth": "0.822",
+      "baseline_answer": "8.231 \\times 10^{-19} \\text{ J}",
+      "is_correct": false
+    },
+    {
+      "idx": 166,
+      "question_dir": "question_166",
+      "ground_truth": "1.70e4",
+      "baseline_answer": "1.70 \\times 10^8",
+      "is_correct": false
+    },
+    {
+      "idx": 167,
+      "question_dir": "question_167",
+      "ground_truth": "0.5",
+      "baseline_answer": "3",
+      "is_correct": false
+    },
+    {
+      "idx": 168,
+      "question_dir": "question_168",
+      "ground_truth": "35.06",
+      "baseline_answer": "34.05",
+      "is_correct": false
+    },
+    {
+      "idx": 169,
+      "question_dir": "question_169",
+      "ground_truth": "1",
+      "baseline_answer": "2.0",
+      "is_correct": false
+    },
+    {
+      "idx": 170,
+      "question_dir": "question_170",
+      "ground_truth": "24.310",
+      "baseline_answer": "24.220",
+      "is_correct": true
+    },
+    {
+      "idx": 171,
+      "question_dir": "question_171",
+      "ground_truth": "1.87e6",
+      "baseline_answer": "1.88 \\times 10^6",
+      "is_correct": true
+    },
+    {
+      "idx": 172,
+      "question_dir": "question_172",
+      "ground_truth": "4.45e15",
+      "baseline_answer": "1.16 \\times 10^{15}",
+      "is_correct": false
+    },
+    {
+      "idx": 173,
+      "question_dir": "question_173",
+      "ground_truth": "1",
+      "baseline_answer": "2",
+      "is_correct": false
+    },
+    {
+      "idx": 174,
+      "question_dir": "question_174",
+      "ground_truth": "3.89e-10",
+      "baseline_answer": "3.90 \\times 10^{-10}",
+      "is_correct": true
+    },
+    {
+      "idx": 175,
+      "question_dir": "question_175",
+      "ground_truth": "9e11",
+      "baseline_answer": "9 \\times 10^{11}",
+      "is_correct": true
+    },
+    {
+      "idx": 176,
+      "question_dir": "question_176",
+      "ground_truth": "46.08",
+      "baseline_answer": "46.08",
+      "is_correct": true
+    },
+    {
+      "idx": 177,
+      "question_dir": "question_177",
+      "ground_truth": "56.0",
+      "baseline_answer": "56.0",
+      "is_correct": true
+    },
+    {
+      "idx": 178,
+      "question_dir": "question_178",
+      "ground_truth": "5.89e-7",
+      "baseline_answer": "5.89 \\times 10^{-7}",
+      "is_correct": true
+    },
+    {
+      "idx": 179,
+      "question_dir": "question_179",
+      "ground_truth": "7.4e-12",
+      "baseline_answer": "7.4 \\times 10^{-12}",
+      "is_correct": true
+    },
+    {
+      "idx": 180,
+      "question_dir": "question_180",
+      "ground_truth": "7.353e14",
+      "baseline_answer": "7.350 \\times 10^{14}",
+      "is_correct": true
+    },
+    {
+      "idx": 181,
+      "question_dir": "question_181",
+      "ground_truth": "1.55",
+      "baseline_answer": "1.55",
+      "is_correct": true
+    },
+    {
+      "idx": 182,
+      "question_dir": "question_182",
+      "ground_truth": "1.39e9",
+      "baseline_answer": "1.1547 \\text{ atoms/m}",
+      "is_correct": false
+    },
+    {
+      "idx": 183,
+      "question_dir": "question_183",
+      "ground_truth": "9.35e5",
+      "baseline_answer": "1.39 \\times 10^6",
+      "is_correct": false
+    },
+    {
+      "idx": 184,
+      "question_dir": "question_184",
+      "ground_truth": "3.61e-10",
+      "baseline_answer": "3.12 \\times 10^{-10}",
+      "is_correct": false
+    },
+    {
+      "idx": 185,
+      "question_dir": "question_185",
+      "ground_truth": "5",
+      "baseline_answer": "5",
+      "is_correct": true
+    },
+    {
+      "idx": 186,
+      "question_dir": "question_186",
+      "ground_truth": "1.45e-5",
+      "baseline_answer": "4.68 \\times 10^{-3}",
+      "is_correct": false
+    },
+    {
+      "idx": 187,
+      "question_dir": "question_187",
+      "ground_truth": "2.88e16",
+      "baseline_answer": "1.17 \\times 10^{11} \\, \\text{cm}^{-3}",
+      "is_correct": false
+    },
+    {
+      "idx": 188,
+      "question_dir": "question_188",
+      "ground_truth": "700",
+      "baseline_answer": "703",
+      "is_correct": true
+    },
+    {
+      "idx": 189,
+      "question_dir": "question_189",
+      "ground_truth": "0.13",
+      "baseline_answer": "0.13",
+      "is_correct": true
+    },
+    {
+      "idx": 190,
+      "question_dir": "question_190",
+      "ground_truth": "8.64",
+      "baseline_answer": "8.61",
+      "is_correct": true
+    },
+    {
+      "idx": 191,
+      "question_dir": "question_191",
+      "ground_truth": "1.39e-10",
+      "baseline_answer": "3.61 \\times 10^{-11}",
+      "is_correct": false
+    },
+    {
+      "idx": 192,
+      "question_dir": "question_192",
+      "ground_truth": "188",
+      "baseline_answer": "187",
+      "is_correct": true
+    },
+    {
+      "idx": 193,
+      "question_dir": "question_193",
+      "ground_truth": "6",
+      "baseline_answer": "4",
+      "is_correct": false
+    },
+    {
+      "idx": 194,
+      "question_dir": "question_194",
+      "ground_truth": "7.26e6",
+      "baseline_answer": "7.26 \\times 10^6",
+      "is_correct": true
+    },
+    {
+      "idx": 195,
+      "question_dir": "question_195",
+      "ground_truth": "28.71",
+      "baseline_answer": "3.01",
+      "is_correct": false
+    },
+    {
+      "idx": 196,
+      "question_dir": "question_196",
+      "ground_truth": "181.3",
+      "baseline_answer": "182.7",
+      "is_correct": true
+    },
+    {
+      "idx": 197,
+      "question_dir": "question_197",
+      "ground_truth": "1.24e-8",
+      "baseline_answer": "5.88 \\times 10^{-9}",
+      "is_correct": false
+    },
+    {
+      "idx": 198,
+      "question_dir": "question_198",
+      "ground_truth": "2.55e-10",
+      "baseline_answer": "2.55 \\times 10^{-10}",
+      "is_correct": true
+    },
+    {
+      "idx": 199,
+      "question_dir": "question_199",
+      "ground_truth": "900",
+      "baseline_answer": "600",
+      "is_correct": false
+    },
+    {
+      "idx": 200,
+      "question_dir": "question_200",
+      "ground_truth": "7.25e-11",
+      "baseline_answer": "0.45 \\times 10^{-10} \\, \\text{m}",
+      "is_correct": true
+    },
+    {
+      "idx": 201,
+      "question_dir": "question_201",
+      "ground_truth": "3.61e2",
+      "baseline_answer": "8.14 \\times 10^2",
+      "is_correct": false
+    },
+    {
+      "idx": 202,
+      "question_dir": "question_202",
+      "ground_truth": "1950",
+      "baseline_answer": "1650",
+      "is_correct": false
+    },
+    {
+      "idx": 203,
+      "question_dir": "question_203",
+      "ground_truth": "2415",
+      "baseline_answer": "4620",
+      "is_correct": false
+    },
+    {
+      "idx": 204,
+      "question_dir": "question_204",
+      "ground_truth": "6.4",
+      "baseline_answer": "0.0",
+      "is_correct": false
+    },
+    {
+      "idx": 205,
+      "question_dir": "question_205",
+      "ground_truth": "1200",
+      "baseline_answer": "495",
+      "is_correct": false
+    },
+    {
+      "idx": 206,
+      "question_dir": "question_206",
+      "ground_truth": "1.85e5",
+      "baseline_answer": "1.93 \\times 10^{-18}",
+      "is_correct": false
+    },
+    {
+      "idx": 207,
+      "question_dir": "question_207",
+      "ground_truth": "0.554",
+      "baseline_answer": "0.784",
+      "is_correct": false
+    },
+    {
+      "idx": 208,
+      "question_dir": "question_208",
+      "ground_truth": "3.3e-10",
+      "baseline_answer": "1.2 \\times 10^{-10}",
+      "is_correct": false
+    },
+    {
+      "idx": 209,
+      "question_dir": "question_209",
+      "ground_truth": "928",
+      "baseline_answer": "1178",
+      "is_correct": false
+    },
+    {
+      "idx": 210,
+      "question_dir": "question_210",
+      "ground_truth": "927.5",
+      "baseline_answer": "11.1",
+      "is_correct": false
+    },
+    {
+      "idx": 211,
+      "question_dir": "question_211",
+      "ground_truth": "84.01",
+      "baseline_answer": "84.01",
+      "is_correct": true
+    },
+    {
+      "idx": 212,
+      "question_dir": "question_212",
+      "ground_truth": "1.5",
+      "baseline_answer": "2.0",
+      "is_correct": false
+    },
+    {
+      "idx": 213,
+      "question_dir": "question_213",
+      "ground_truth": "5.3e3",
+      "baseline_answer": "2.5 \\times 10^2",
+      "is_correct": false
+    },
+    {
+      "idx": 214,
+      "question_dir": "question_214",
+      "ground_truth": "28.8",
+      "baseline_answer": "21.0",
+      "is_correct": false
+    },
+    {
+      "idx": 215,
+      "question_dir": "question_215",
+      "ground_truth": "4.46e19",
+      "baseline_answer": "2.40 \\times 10^{20}",
+      "is_correct": false
+    },
+    {
+      "idx": 216,
+      "question_dir": "question_216",
+      "ground_truth": "2.68",
+      "baseline_answer": "2.68",
+      "is_correct": true
+    },
+    {
+      "idx": 217,
+      "question_dir": "question_217",
+      "ground_truth": "700",
+      "baseline_answer": "700",
+      "is_correct": true
+    },
+    {
+      "idx": 218,
+      "question_dir": "question_218",
+      "ground_truth": "2.26e-10",
+      "baseline_answer": "2.86 \\times 10^{-10}",
+      "is_correct": false
+    },
+    {
+      "idx": 219,
+      "question_dir": "question_219",
+      "ground_truth": "41.9",
+      "baseline_answer": "42.3",
+      "is_correct": true
+    },
+    {
+      "idx": 220,
+      "question_dir": "question_220",
+      "ground_truth": "0.112",
+      "baseline_answer": "0.112",
+      "is_correct": true
+    },
+    {
+      "idx": 221,
+      "question_dir": "question_221",
+      "ground_truth": "0.54",
+      "baseline_answer": "542.40 \\, \\text{eV}, 358.80 \\, \\text{eV}",
+      "is_correct": false
+    },
+    {
+      "idx": 222,
+      "question_dir": "question_222",
+      "ground_truth": "3.21e13",
+      "baseline_answer": "2.02 \\times 10^1",
+      "is_correct": false
+    },
+    {
+      "idx": 223,
+      "question_dir": "question_223",
+      "ground_truth": "2.45e6",
+      "baseline_answer": "1.54 \\times 10^7",
+      "is_correct": false
+    },
+    {
+      "idx": 224,
+      "question_dir": "question_224",
+      "ground_truth": "36",
+      "baseline_answer": "36",
+      "is_correct": true
+    },
+    {
+      "idx": 225,
+      "question_dir": "question_225",
+      "ground_truth": "258",
+      "baseline_answer": "725",
+      "is_correct": false
+    },
+    {
+      "idx": 226,
+      "question_dir": "question_226",
+      "ground_truth": "1700",
+      "baseline_answer": "1600",
+      "is_correct": false
+    },
+    {
+      "idx": 227,
+      "question_dir": "question_227",
+      "ground_truth": "12.4",
+      "baseline_answer": "12.4",
+      "is_correct": true
+    },
+    {
+      "idx": 228,
+      "question_dir": "question_228",
+      "ground_truth": "5.3e-9",
+      "baseline_answer": "3.4 \\times 10^{-9}",
+      "is_correct": false
+    },
+    {
+      "idx": 229,
+      "question_dir": "question_229",
+      "ground_truth": "50.7",
+      "baseline_answer": "51",
+      "is_correct": true
+    },
+    {
+      "idx": 230,
+      "question_dir": "question_230",
+      "ground_truth": "800",
+      "baseline_answer": "750",
+      "is_correct": false
+    },
+    {
+      "idx": 231,
+      "question_dir": "question_231",
+      "ground_truth": "100",
+      "baseline_answer": "100\\%",
+      "is_correct": true
+    },
+    {
+      "idx": 232,
+      "question_dir": "question_232",
+      "ground_truth": "6.5e-2",
+      "baseline_answer": "6.5 \\times 10^{-2}",
+      "is_correct": true
+    },
+    {
+      "idx": 233,
+      "question_dir": "question_233",
+      "ground_truth": "41585",
+      "baseline_answer": "5730",
+      "is_correct": false
+    },
+    {
+      "idx": 234,
+      "question_dir": "question_234",
+      "ground_truth": "1.69",
+      "baseline_answer": "0.05",
+      "is_correct": false
+    },
+    {
+      "idx": 235,
+      "question_dir": "question_235",
+      "ground_truth": "7.02e5",
+      "baseline_answer": "5.04 \\times 10^9",
+      "is_correct": false
+    },
+    {
+      "idx": 236,
+      "question_dir": "question_236",
+      "ground_truth": "1.04e-3",
+      "baseline_answer": "4.03 \\times 10^{-7}",
+      "is_correct": false
+    },
+    {
+      "idx": 237,
+      "question_dir": "question_237",
+      "ground_truth": "4",
+      "baseline_answer": "4",
+      "is_correct": true
+    },
+    {
+      "idx": 238,
+      "question_dir": "question_238",
+      "ground_truth": "3.75e9",
+      "baseline_answer": "5.21 \\times 10^3",
+      "is_correct": false
+    },
+    {
+      "idx": 239,
+      "question_dir": "question_239",
+      "ground_truth": "8.49e-4",
+      "baseline_answer": "8.49 \\times 10^{-4}",
+      "is_correct": true
+    },
+    {
+      "idx": 240,
+      "question_dir": "question_240",
+      "ground_truth": "0.7773",
+      "baseline_answer": "1.6722 \\times 10^{17}",
+      "is_correct": false
+    },
+    {
+      "idx": 241,
+      "question_dir": "question_241",
+      "ground_truth": "3",
+      "baseline_answer": "3",
+      "is_correct": true
+    },
+    {
+      "idx": 242,
+      "question_dir": "question_242",
+      "ground_truth": "12.5",
+      "baseline_answer": "167.8\\%",
+      "is_correct": false
+    },
+    {
+      "idx": 243,
+      "question_dir": "question_243",
+      "ground_truth": "-\\frac{1}{2} X^{-\\frac{1}{2}}",
+      "baseline_answer": "-\\frac{1}{2\\sqrt{X}}",
+      "is_correct": false
+    },
+    {
+      "idx": 244,
+      "question_dir": "question_244",
+      "ground_truth": "\\frac{2}{3} \\frac{C}{S}",
+      "baseline_answer": "-\\frac{2C}{3S}",
+      "is_correct": false
+    },
+    {
+      "idx": 245,
+      "question_dir": "question_245",
+      "ground_truth": "MR=SRMC",
+      "baseline_answer": "MR = MC",
+      "is_correct": false
+    },
+    {
+      "idx": 246,
+      "question_dir": "question_246",
+      "ground_truth": "3",
+      "baseline_answer": "3",
+      "is_correct": true
+    },
+    {
+      "idx": 247,
+      "question_dir": "question_247",
+      "ground_truth": "57",
+      "baseline_answer": "57",
+      "is_correct": true
+    },
+    {
+      "idx": 248,
+      "question_dir": "question_248",
+      "ground_truth": "8",
+      "baseline_answer": "8",
+      "is_correct": true
+    },
+    {
+      "idx": 249,
+      "question_dir": "question_249",
+      "ground_truth": "\\frac{K-1}{L}",
+      "baseline_answer": "-\\frac{K-1}{L}",
+      "is_correct": true
+    },
+    {
+      "idx": 250,
+      "question_dir": "question_250",
+      "ground_truth": "SRAC=LRAC",
+      "baseline_answer": "\\text{SRAC} = \\text{LRAC}",
+      "is_correct": true
+    },
+    {
+      "idx": 251,
+      "question_dir": "question_251",
+      "ground_truth": "SRMC=LRMC",
+      "baseline_answer": "\\text{SRMC} = \\text{LRAC}",
+      "is_correct": false
+    },
+    {
+      "idx": 252,
+      "question_dir": "question_252",
+      "ground_truth": "100 p^{\\frac{1}{2}}",
+      "baseline_answer": "100 \\sqrt{p}",
+      "is_correct": false
+    },
+    {
+      "idx": 253,
+      "question_dir": "question_253",
+      "ground_truth": "1",
+      "baseline_answer": "1",
+      "is_correct": true
+    },
+    {
+      "idx": 254,
+      "question_dir": "question_254",
+      "ground_truth": "64",
+      "baseline_answer": "64",
+      "is_correct": true
+    },
+    {
+      "idx": 255,
+      "question_dir": "question_255",
+      "ground_truth": "\\frac{1}{4p^2}",
+      "baseline_answer": "\\frac{1}{4p^2}",
+      "is_correct": true
+    },
+    {
+      "idx": 256,
+      "question_dir": "question_256",
+      "ground_truth": "6.2",
+      "baseline_answer": "6.2",
+      "is_correct": true
+    },
+    {
+      "idx": 257,
+      "question_dir": "question_257",
+      "ground_truth": "75",
+      "baseline_answer": "75",
+      "is_correct": true
+    },
+    {
+      "idx": 258,
+      "question_dir": "question_258",
+      "ground_truth": "4",
+      "baseline_answer": "4",
+      "is_correct": true
+    },
+    {
+      "idx": 259,
+      "question_dir": "question_259",
+      "ground_truth": "\\alpha",
+      "baseline_answer": "\\alpha",
+      "is_correct": true
+    },
+    {
+      "idx": 260,
+      "question_dir": "question_260",
+      "ground_truth": "X_{d}=125-1.25 P",
+      "baseline_answer": "X_d = 125 - 1.25P",
+      "is_correct": true
+    },
+    {
+      "idx": 261,
+      "question_dir": "question_261",
+      "ground_truth": "\\hbar \\omega(v+1 / 2)-\\frac{E_{0}^{2} e^{2}}{2 m \\omega^{2}}",
+      "baseline_answer": "E_v = \\hbar \\omega \\left( v + \\frac{1}{2} + \\frac{E_0^2 e^2 (2v+1) m_e}{2 \\hbar^2 k \\omega} \\right)",
+      "is_correct": false
+    },
+    {
+      "idx": 262,
+      "question_dir": "question_262",
+      "ground_truth": "7.6 Z",
+      "baseline_answer": "0.0",
+      "is_correct": false
+    },
+    {
+      "idx": 263,
+      "question_dir": "question_263",
+      "ground_truth": "1.07e16",
+      "baseline_answer": "1.06 \\times 10^{16}",
+      "is_correct": true
+    },
+    {
+      "idx": 264,
+      "question_dir": "question_264",
+      "ground_truth": "2.88e-19",
+      "baseline_answer": "2.89 \\times 10^{-19} \\, \\text{J}",
+      "is_correct": true
+    },
+    {
+      "idx": 265,
+      "question_dir": "question_265",
+      "ground_truth": "1.325e-27",
+      "baseline_answer": "1.325 \\times 10^{-27}",
+      "is_correct": true
+    },
+    {
+      "idx": 266,
+      "question_dir": "question_266",
+      "ground_truth": "11.9",
+      "baseline_answer": "0.5 \\text{ eV}",
+      "is_correct": false
+    },
+    {
+      "idx": 267,
+      "question_dir": "question_267",
+      "ground_truth": "4.6e-24",
+      "baseline_answer": "4.564 \\times 10^{-24} \\, \\text{m}",
+      "is_correct": true
+    },
+    {
+      "idx": 268,
+      "question_dir": "question_268",
+      "ground_truth": "\\frac{1}{3} E_{1}+\\frac{2}{3} E_{2}",
+      "baseline_answer": "\\frac{1}{3} E_1 + \\frac{2}{3} E_2",
+      "is_correct": true
+    },
+    {
+      "idx": 269,
+      "question_dir": "question_269",
+      "ground_truth": "E_{1},E_{2}",
+      "baseline_answer": "E_1 \\text{ and } E_2",
+      "is_correct": false
+    },
+    {
+      "idx": 270,
+      "question_dir": "question_270",
+      "ground_truth": "24",
+      "baseline_answer": "0",
+      "is_correct": false
+    },
+    {
+      "idx": 271,
+      "question_dir": "question_271",
+      "ground_truth": "10.1",
+      "baseline_answer": "11.0",
+      "is_correct": false
+    }
+  ]
+}
