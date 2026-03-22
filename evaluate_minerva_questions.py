@@ -1,6 +1,6 @@
 """
 Evaluate 272 MINERVA questions using majority voting and prm_last_max strategies.
-Uses extract_boxed_answer and verify_answer from minerva.py
+Uses standard extract_boxed_answer and verify_answer from minerva.py via minerva_utils.py
 """
 
 import os
@@ -9,150 +9,9 @@ import re
 from collections import Counter
 from typing import List, Optional, Tuple
 from pathlib import Path
-from fractions import Fraction
 
-# ── Answer extraction ──────────────────────────────────────────────────────
-
-def extract_boxed_answer(text: str) -> Optional[str]:
-    """Extract the last \\boxed{...} content with proper nested brace handling."""
-    results = []
-    idx = 0
-    while True:
-        start = text.find(r'\boxed{', idx)
-        if start == -1:
-            break
-        brace_start = start + len(r'\boxed{')
-        depth = 1
-        i = brace_start
-        while i < len(text) and depth > 0:
-            if text[i] == '{':
-                depth += 1
-            elif text[i] == '}':
-                depth -= 1
-            i += 1
-        if depth == 0:
-            results.append(text[brace_start:i-1].strip())
-        idx = i
-    return results[-1] if results else None
-
-
-def clean_latex(text: str) -> str:
-    """Remove LaTeX formatting from text."""
-    # Remove common LaTeX commands
-    text = re.sub(r'\\text\{([^}]*)\}', r'\1', text)
-    text = re.sub(r'\\mathrm\{([^}]*)\}', r'\1', text)
-    text = re.sub(r'\\left\(|\\\right\)', '', text)
-    text = re.sub(r'\\left\{|\\\right\}', '', text)
-    text = re.sub(r'\\times', '*', text)
-    text = re.sub(r'\^', '^', text)
-    text = re.sub(r'\\frac\{([^}]*)\}\{([^}]*)\}', r'(\1)/(\2)', text)
-    text = re.sub(r'\s+', ' ', text)
-    return text.strip()
-
-
-def extract_numeric_value(text: str) -> Optional[float]:
-    """Try to extract and evaluate numeric value from text."""
-    # Clean LaTeX
-    text = clean_latex(text)
-
-    # Remove common units that might be attached
-    units_pattern = r'\s*(?:cm|m|mm|kg|g|s|Hz|arcsec|arcmin|degree|ergs?/s|erg/s|Angstroms?|K|C|rad|°|″|′)(?:\s|$|/)'
-    text_no_units = re.sub(units_pattern, '', text)
-
-    try:
-        # Try direct float conversion
-        return float(text_no_units)
-    except ValueError:
-        pass
-
-    # Try to parse fractions: "1/20" or "(1)/(20)"
-    try:
-        match = re.search(r'\(?(\d+)\)?/\(?(\d+)\)?', text_no_units)
-        if match:
-            numerator = int(match.group(1))
-            denominator = int(match.group(2))
-            return numerator / denominator
-    except (ValueError, AttributeError, ZeroDivisionError):
-        pass
-
-    # Try to parse scientific notation: a.b * 10^c or ae c format
-    try:
-        # Handle patterns like "4.5 \times 10^{34}" or "4.5 \times 10^34"
-        match = re.search(r'([-+]?\d*\.?\d+)\s*(?:\*|x)\s*10\^?\{?([+-]?\d+)\}?', text_no_units, re.IGNORECASE)
-        if match:
-            base = float(match.group(1))
-            exp = int(match.group(2))
-            return base * (10 ** exp)
-    except (ValueError, AttributeError):
-        pass
-
-    # Handle "1.4e31" format
-    try:
-        match = re.search(r'([-+]?\d*\.?\d+)e([+-]?\d+)', text_no_units, re.IGNORECASE)
-        if match:
-            base = float(match.group(1))
-            exp = int(match.group(2))
-            return base * (10 ** exp)
-    except (ValueError, AttributeError):
-        pass
-
-    return None
-
-
-def verify_answer(response: str, ground_truth: str, tolerance: float = 0.02) -> bool:
-    """
-    Verify response against ground truth with smart comparison.
-    Tries numeric comparison first, then string matching.
-    Uses adaptive tolerance based on magnitude of numbers.
-    """
-    pred = extract_boxed_answer(response)
-    if pred is None:
-        return False
-
-    pred = pred.strip()
-    gt = ground_truth.strip()
-
-    # Direct string match (works for exact matches)
-    if pred == gt:
-        return True
-
-    # Try numeric comparison
-    pred_val = extract_numeric_value(pred)
-    gt_val = extract_numeric_value(gt)
-
-    if pred_val is not None and gt_val is not None:
-        # Both are numeric: use adaptive tolerance
-        abs_diff = abs(pred_val - gt_val)
-        abs_gt = abs(gt_val)
-
-        if abs_gt < 1e-10:
-            # For very small numbers, use absolute tolerance
-            return abs_diff < 1e-5
-        elif abs_gt < 0.1:
-            # For small numbers (< 0.1), use tighter tolerance
-            relative_error = abs_diff / abs_gt if abs_gt != 0 else float('inf')
-            return relative_error < tolerance
-        else:
-            # For normal numbers, use standard tolerance
-            relative_error = abs_diff / abs_gt if abs_gt != 0 else float('inf')
-            return relative_error < tolerance
-
-    # Clean LaTeX and try string match
-    pred_clean = clean_latex(pred)
-    gt_clean = clean_latex(gt)
-
-    if pred_clean == gt_clean:
-        return True
-
-    # Try matching after removing spaces/special chars
-    pred_alphanum = re.sub(r'[^\w]', '', pred_clean).lower()
-    gt_alphanum = re.sub(r'[^\w]', '', gt_clean).lower()
-
-    if pred_alphanum == gt_alphanum and len(pred_alphanum) > 0:
-        return True
-
-    return False
-
+# Import standard utilities from minerva.py
+from minerva_utils import extract_boxed_answer, verify_answer, verify_answer_smart
 
 # ── Helper functions ──────────────────────────────────────────────────────
 

@@ -1,17 +1,19 @@
 """
 Detailed comparison of voting strategies for MINERVA questions.
 Shows which strategy wins on each question and why.
+Uses standard utilities from minerva.py via minerva_utils.py
 """
 
 import os
 import json
-import re
 from collections import Counter, defaultdict
 from typing import List, Optional, Dict, Tuple
 from pathlib import Path
 
-# ── Import voting functions ────────────────────────────────────────────────
+# Import standard utilities
+from minerva_utils import verify_answer, verify_answer_smart
 
+# Import voting functions
 from minerva_voting_evaluation import (
     VOTING_STRATEGIES,
     MAJORITY_VOTE,
@@ -22,8 +24,6 @@ from minerva_voting_evaluation import (
     PRM_AVG_MAX,
     PRM_AVG_VOTE,
     AGG_FN_MAP,
-    verify_answer,
-    extract_boxed_answer,
 )
 
 
@@ -91,7 +91,7 @@ def compare_strategies():
                     selected_answer = AGG_FN_MAP[strategy](x_list, v_list)
 
                 strategy_answers[strategy] = selected_answer
-                is_correct = verify_answer(f"\\boxed{{{selected_answer}}}", ground_truth) if selected_answer else False
+                is_correct = verify_answer_smart(f"\\boxed{{{selected_answer}}}", ground_truth) if selected_answer else False
                 strategy_correctness_map[strategy] = is_correct
 
                 if is_correct:
