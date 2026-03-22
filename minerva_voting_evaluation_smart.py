@@ -129,7 +129,7 @@ AGG_FN_MAP = {
 def evaluate_all_strategies_smart():
     """Evaluate using verify_answer_smart (numeric tolerance, LaTeX handling)."""
     base_dir = Path("/Users/luungoc/Project/compute-optimal-tts/MINERVA_best_of_n")
-    base_dir = base_dir / "Qwen2.5-7B-Instruct" / "Qwen2.5-Math-PRM-7B" / "seed_0_width_32_num_seq_32_num_q_0"
+    base_dir = base_dir / "Qwen2.5-7B-Instruct" / "Qwen2.5-Math-PRM-7B" / "seed_0_width_16_num_seq_16_num_q_0"
 
     # Get all question directories
     question_dirs = sorted(
@@ -139,7 +139,7 @@ def evaluate_all_strategies_smart():
 
     print(f"Found {len(question_dirs)} question directories")
     print("=" * 80)
-    print("USING: verify_answer_smart (with numeric tolerance & LaTeX handling)")
+    print("USING: verify_answer_smart (EXACT numeric match + format normalization)")
     print("=" * 80)
 
     # Initialize tracking
@@ -185,11 +185,10 @@ def evaluate_all_strategies_smart():
                     selected_answer = AGG_FN_MAP[strategy](x_list, v_list)
 
                 if selected_answer:
-                    # Verify using smart comparison (numeric tolerance + LaTeX)
+                    # Verify using smart comparison (exact numeric match + format normalization)
                     is_correct = verify_answer_smart(
                         f"\\boxed{{{selected_answer}}}",
-                        ground_truth,
-                        tolerance=0.02  # 2% relative error
+                        ground_truth
                     )
                 else:
                     is_correct = False

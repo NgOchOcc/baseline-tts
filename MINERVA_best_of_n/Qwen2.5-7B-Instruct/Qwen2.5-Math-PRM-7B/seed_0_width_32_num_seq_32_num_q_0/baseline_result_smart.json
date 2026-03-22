@@ -1,8 +1,8 @@
 {
   "summary": {
     "total": 272,
-    "correct": 117,
-    "accuracy": 0.43014705882352944
+    "correct": 90,
+    "accuracy": 0.33088235294117646
   },
   "detailed_results": [
     {
@@ -10,7 +10,7 @@
       "question_dir": "question_0",
       "ground_truth": "1.6",
       "baseline_answer": "1.57",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 1,
@@ -66,7 +66,7 @@
       "question_dir": "question_8",
       "ground_truth": "0.022",
       "baseline_answer": "0.0217",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 9,
@@ -150,7 +150,7 @@
       "question_dir": "question_20",
       "ground_truth": "6630",
       "baseline_answer": "6631",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 21,
@@ -262,7 +262,7 @@
       "question_dir": "question_36",
       "ground_truth": "0.15",
       "baseline_answer": "0.1474",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 37,
@@ -283,14 +283,14 @@
       "question_dir": "question_39",
       "ground_truth": "0.033",
       "baseline_answer": "0.0334",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 40,
       "question_dir": "question_40",
       "ground_truth": "0.5613",
       "baseline_answer": "0.562",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 41,
@@ -409,7 +409,7 @@
       "question_dir": "question_57",
       "ground_truth": "0.53",
       "baseline_answer": "0.533",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 58,
@@ -430,7 +430,7 @@
       "question_dir": "question_60",
       "ground_truth": "4.4e7",
       "baseline_answer": "44241339",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 61,
@@ -1053,14 +1053,14 @@
       "question_dir": "question_149",
       "ground_truth": "1.4903e4",
       "baseline_answer": "1.4910 \\times 10^4",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 150,
       "question_dir": "question_150",
       "ground_truth": "4.03188",
       "baseline_answer": "4.00000",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 151,
@@ -1074,7 +1074,7 @@
       "question_dir": "question_152",
       "ground_truth": "4100",
       "baseline_answer": "4092",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 153,
@@ -1088,7 +1088,7 @@
       "question_dir": "question_154",
       "ground_truth": "0.264",
       "baseline_answer": "0.265",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 155,
@@ -1130,7 +1130,7 @@
       "question_dir": "question_160",
       "ground_truth": "13.1",
       "baseline_answer": "13.0",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 161,
@@ -1200,14 +1200,14 @@
       "question_dir": "question_170",
       "ground_truth": "24.310",
       "baseline_answer": "24.220",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 171,
       "question_dir": "question_171",
       "ground_truth": "1.87e6",
       "baseline_answer": "1.88 \\times 10^6",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 172,
@@ -1228,7 +1228,7 @@
       "question_dir": "question_174",
       "ground_truth": "3.89e-10",
       "baseline_answer": "3.90 \\times 10^{-10}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 175,
@@ -1270,7 +1270,7 @@
       "question_dir": "question_180",
       "ground_truth": "7.353e14",
       "baseline_answer": "7.350 \\times 10^{14}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 181,
@@ -1326,7 +1326,7 @@
       "question_dir": "question_188",
       "ground_truth": "700",
       "baseline_answer": "703",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 189,
@@ -1340,7 +1340,7 @@
       "question_dir": "question_190",
       "ground_truth": "8.64",
       "baseline_answer": "8.61",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 191,
@@ -1354,7 +1354,7 @@
       "question_dir": "question_192",
       "ground_truth": "188",
       "baseline_answer": "187",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 193,
@@ -1382,7 +1382,7 @@
       "question_dir": "question_196",
       "ground_truth": "181.3",
       "baseline_answer": "182.7",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 197,
@@ -1410,7 +1410,7 @@
       "question_dir": "question_200",
       "ground_truth": "7.25e-11",
       "baseline_answer": "0.45 \\times 10^{-10} \\, \\text{m}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 201,
@@ -1543,7 +1543,7 @@
       "question_dir": "question_219",
       "ground_truth": "41.9",
       "baseline_answer": "42.3",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 220,
@@ -1613,7 +1613,7 @@
       "question_dir": "question_229",
       "ground_truth": "50.7",
       "baseline_answer": "51",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 230,
@@ -1851,14 +1851,14 @@
       "question_dir": "question_263",
       "ground_truth": "1.07e16",
       "baseline_answer": "1.06 \\times 10^{16}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 264,
       "question_dir": "question_264",
       "ground_truth": "2.88e-19",
       "baseline_answer": "2.89 \\times 10^{-19} \\, \\text{J}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 265,
@@ -1879,7 +1879,7 @@
       "question_dir": "question_267",
       "ground_truth": "4.6e-24",
       "baseline_answer": "4.564 \\times 10^{-24} \\, \\text{m}",
-      "is_correct": true
+      "is_correct": false
     },
     {
       "idx": 268,

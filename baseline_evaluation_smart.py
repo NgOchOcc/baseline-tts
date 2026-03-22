@@ -22,7 +22,7 @@ def baseline_evaluation_smart():
 
     print(f"Found {len(question_dirs)} question directories")
     print("=" * 80)
-    print("BASELINE (SMART): Taking output[0] with verify_answer_smart")
+    print("BASELINE (SMART): Taking output[0] with verify_answer_smart (EXACT match)")
     print("=" * 80)
     print()
 
@@ -58,12 +58,11 @@ def baseline_evaluation_smart():
         first_output = outputs[0]
         baseline_answer = first_output.get('extracted_answer')
 
-        # Verify answer using smart verification
+        # Verify answer using smart verification (exact numeric match + format normalization)
         if baseline_answer:
             is_correct = verify_answer_smart(
                 f"\\boxed{{{baseline_answer}}}",
-                ground_truth,
-                tolerance=0.02  # 2% relative error
+                ground_truth
             )
         else:
             is_correct = False

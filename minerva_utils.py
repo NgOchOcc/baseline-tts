@@ -83,23 +83,24 @@ def verify_answer(
 def verify_answer_smart(
     response: str,
     ground_truth: str,
-    tolerance: float = 0.02,
 ) -> bool:
     """
-    Enhanced verification that tries multiple matching strategies.
+    Enhanced verification that tries multiple matching strategies WITHOUT tolerance.
+    Requires EXACT matches, but handles format variations.
 
     Progression:
     1. Direct string match via minerva.py standard
-    2. Numeric comparison with tolerance
-    3. LaTeX-aware matching
+    2. Numeric comparison (exact match only)
+    3. LaTeX-aware matching (format normalization)
+    4. Scientific notation normalization
+    5. Unit removal then numeric match
 
     Args:
         response: Model response text
         ground_truth: Ground truth answer
-        tolerance: Relative tolerance for numeric comparison (default 2%)
 
     Returns:
-        True if answer is correct, False otherwise
+        True if answer is correct (exact numeric or string match), False otherwise
     """
     import re
 
@@ -115,29 +116,22 @@ def verify_answer_smart(
     pred = pred.strip()
     gt = ground_truth.strip()
 
-    # Try numeric comparison with unit/notation handling
+    # Try numeric comparison (EXACT match only)
     pred_val = _extract_numeric_value(pred)
     gt_val = _extract_numeric_value(gt)
 
     if pred_val is not None and gt_val is not None:
-        # Both numeric: check with tolerance
-        abs_diff = abs(pred_val - gt_val)
-        abs_gt = abs(gt_val)
+        # Both numeric: check EXACT match (no tolerance)
+        return pred_val == gt_val
 
-        if abs_gt < 1e-10:
-            return abs_diff < 1e-5
-        else:
-            relative_error = abs_diff / abs_gt
-            return relative_error < tolerance
-
-    # Try LaTeX-aware matching
+    # Try LaTeX-aware matching (normalize format)
     pred_clean = _clean_latex(pred)
     gt_clean = _clean_latex(gt)
 
     if pred_clean == gt_clean:
         return True
 
-    # Try alphanumeric matching
+    # Try alphanumeric matching (ignore all non-alphanumeric chars)
     pred_alphanum = re.sub(r'[^\w]', '', pred_clean).lower()
     gt_alphanum = re.sub(r'[^\w]', '', gt_clean).lower()
 
