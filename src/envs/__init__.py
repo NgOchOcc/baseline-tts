@@ -6,16 +6,24 @@ from importlib import import_module
 
 
 def get_env_datasets(env_name: str, **kwargs):
-    if env_name in ['AMC23', 'AIME24', 'MINERVA']:
+    # MINERVA uses math_verify for evaluation, so map to MINERVA module
+    # AMC23 and AIME24 still use MATH module
+    if env_name in ['AMC23', 'AIME24']:
         task_module = import_module(f"envs.MATH")
+    elif env_name == 'MINERVA':
+        task_module = import_module(f"envs.MINERVA")
     else:
         task_module = import_module(f"envs.{env_name}")
     return task_module.get_train_test_dataset(env_name, **kwargs)
 
 
 def get_default_query_str_builder(env_name: str, **kwargs):
-    if env_name in ['AMC23', 'AIME24', 'MINERVA']:
+    # MINERVA uses math_verify for evaluation, so map to MINERVA module
+    # AMC23 and AIME24 still use MATH module
+    if env_name in ['AMC23', 'AIME24']:
         task_module = import_module(f"envs.MATH")
+    elif env_name == 'MINERVA':
+        task_module = import_module(f"envs.MINERVA")
     else:
         task_module = import_module(f"envs.{env_name}")
 

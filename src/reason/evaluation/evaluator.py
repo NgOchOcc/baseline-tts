@@ -35,8 +35,12 @@ from utils import get_step_cnt, to_raw_string, load_jsonl
 class Task:
     def __init__(self, task_name: str, is_few_shot: bool = False, model_names=[]):
         # Map task aliases to actual task names (same as get_env_datasets)
-        if task_name in ("AMC23", "AIME24", "MINERVA"):
+        # MINERVA uses math_verify for evaluation, so map to MINERVA module
+        # AMC23 and AIME24 still use MATH module
+        if task_name in ("AMC23", "AIME24"):
             actual_task_name = "MATH"
+        elif task_name == "MINERVA":
+            actual_task_name = "MINERVA"
         else:
             actual_task_name = task_name
 
@@ -66,11 +70,13 @@ class Task:
         self.env_fn = task_module.Env
 
     def prompt_fn(self, problem_input: str):
-        # For MINERVA, use MATH prompt builder (automatically mapped in get_default_query_str_builder)
+        # Use get_default_query_str_builder with task_name to get prompt builder
+        # MINERVA mapper in get_default_query_str_builder will use MINERVA module's COT_TASK_DESC
         return get_default_query_str_builder(self.task_name)(problem_input, is_few_shot=self._is_few_shot, model_names=self.model_names)
 
     def test_ds(self, task_name):
-        # get_env_datasets automatically maps MINERVA -> MATH and loads test_minerva.jsonl
+        # get_env_datasets maps MINERVA to MINERVA module and loads test_minerva.jsonl with math_verify evaluation
+        # AMC23, AIME24 are mapped to MATH module
         return get_env_datasets(task_name)[1]
 
 

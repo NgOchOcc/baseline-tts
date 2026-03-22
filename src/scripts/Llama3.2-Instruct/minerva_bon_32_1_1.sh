@@ -42,7 +42,7 @@ python -m reason.evaluation.evaluate \
     --max_new_tokens $max_new_tokens \
     --num_sequence $num_sequence \
     --tree_max_width $tree_max_width \
-    --tree_max_depth $tree_max_depth \
+    --tree_max_depth $tree_max_depth \  
     --save_dir $save_dir \
     --method $method \
     --num_worker $num_worker \
