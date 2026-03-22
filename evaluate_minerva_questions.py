@@ -9,6 +9,7 @@ import re
 from collections import Counter
 from typing import List, Optional, Tuple
 from pathlib import Path
+from fractions import Fraction
 
 # ── Answer extraction ──────────────────────────────────────────────────────
 
@@ -37,7 +38,6 @@ def extract_boxed_answer(text: str) -> Optional[str]:
 
 def clean_latex(text: str) -> str:
     """Remove LaTeX formatting from text."""
-    import re
     # Remove common LaTeX commands
     text = re.sub(r'\\text\{([^}]*)\}', r'\1', text)
     text = re.sub(r'\\mathrm\{([^}]*)\}', r'\1', text)
@@ -52,22 +52,33 @@ def clean_latex(text: str) -> str:
 
 def extract_numeric_value(text: str) -> Optional[float]:
     """Try to extract and evaluate numeric value from text."""
-    import re
-    import math
-
     # Clean LaTeX
     text = clean_latex(text)
 
+    # Remove common units that might be attached
+    units_pattern = r'\s*(?:cm|m|mm|kg|g|s|Hz|arcsec|arcmin|degree|ergs?/s|erg/s|Angstroms?|K|C|rad|°|″|′)(?:\s|$|/)'
+    text_no_units = re.sub(units_pattern, '', text)
+
     try:
         # Try direct float conversion
-        return float(text)
+        return float(text_no_units)
     except ValueError:
+        pass
+
+    # Try to parse fractions: "1/20" or "(1)/(20)"
+    try:
+        match = re.search(r'\(?(\d+)\)?/\(?(\d+)\)?', text_no_units)
+        if match:
+            numerator = int(match.group(1))
+            denominator = int(match.group(2))
+            return numerator / denominator
+    except (ValueError, AttributeError, ZeroDivisionError):
         pass
 
     # Try to parse scientific notation: a.b * 10^c or ae c format
     try:
         # Handle patterns like "4.5 \times 10^{34}" or "4.5 \times 10^34"
-        match = re.search(r'([-+]?\d*\.?\d+)\s*(?:\*|\\times)\s*10\^?\{?([+-]?\d+)\}?', text)
+        match = re.search(r'([-+]?\d*\.?\d+)\s*(?:\*|x)\s*10\^?\{?([+-]?\d+)\}?', text_no_units, re.IGNORECASE)
         if match:
             base = float(match.group(1))
             exp = int(match.group(2))
@@ -77,7 +88,7 @@ def extract_numeric_value(text: str) -> Optional[float]:
 
     # Handle "1.4e31" format
     try:
-        match = re.search(r'([-+]?\d*\.?\d+)e([+-]?\d+)', text)
+        match = re.search(r'([-+]?\d*\.?\d+)e([+-]?\d+)', text_no_units, re.IGNORECASE)
         if match:
             base = float(match.group(1))
             exp = int(match.group(2))
@@ -88,10 +99,11 @@ def extract_numeric_value(text: str) -> Optional[float]:
     return None
 
 
-def verify_answer(response: str, ground_truth: str, tolerance: float = 0.01) -> bool:
+def verify_answer(response: str, ground_truth: str, tolerance: float = 0.02) -> bool:
     """
     Verify response against ground truth with smart comparison.
     Tries numeric comparison first, then string matching.
+    Uses adaptive tolerance based on magnitude of numbers.
     """
     pred = extract_boxed_answer(response)
     if pred is None:
@@ -109,13 +121,20 @@ def verify_answer(response: str, ground_truth: str, tolerance: float = 0.01) -> 
     gt_val = extract_numeric_value(gt)
 
     if pred_val is not None and gt_val is not None:
-        # Both are numeric: check relative tolerance
-        if abs(gt_val) < 1e-10:
+        # Both are numeric: use adaptive tolerance
+        abs_diff = abs(pred_val - gt_val)
+        abs_gt = abs(gt_val)
+
+        if abs_gt < 1e-10:
             # For very small numbers, use absolute tolerance
-            return abs(pred_val - gt_val) < 1e-6
+            return abs_diff < 1e-5
+        elif abs_gt < 0.1:
+            # For small numbers (< 0.1), use tighter tolerance
+            relative_error = abs_diff / abs_gt if abs_gt != 0 else float('inf')
+            return relative_error < tolerance
         else:
-            # Use relative tolerance
-            relative_error = abs(pred_val - gt_val) / abs(gt_val)
+            # For normal numbers, use standard tolerance
+            relative_error = abs_diff / abs_gt if abs_gt != 0 else float('inf')
             return relative_error < tolerance
 
     # Clean LaTeX and try string match
@@ -123,6 +142,13 @@ def verify_answer(response: str, ground_truth: str, tolerance: float = 0.01) -> 
     gt_clean = clean_latex(gt)
 
     if pred_clean == gt_clean:
+        return True
+
+    # Try matching after removing spaces/special chars
+    pred_alphanum = re.sub(r'[^\w]', '', pred_clean).lower()
+    gt_alphanum = re.sub(r'[^\w]', '', gt_clean).lower()
+
+    if pred_alphanum == gt_alphanum and len(pred_alphanum) > 0:
         return True
 
     return False

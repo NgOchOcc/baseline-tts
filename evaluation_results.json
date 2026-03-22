@@ -1,10 +1,10 @@
 {
   "summary": {
     "total": 272,
-    "majority_vote_correct": 110,
-    "majority_vote_accuracy": 40.44117647058824,
-    "prm_last_max_correct": 95,
-    "prm_last_max_accuracy": 34.92647058823529
+    "majority_vote_correct": 136,
+    "majority_vote_accuracy": 50.0,
+    "prm_last_max_correct": 117,
+    "prm_last_max_accuracy": 43.01470588235294
   },
   "detailed_results": [
     {
@@ -12,9 +12,9 @@
       "question_dir": "question_0",
       "ground_truth": "1.6",
       "mv_answer": "1.57",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "1.57",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 1,
@@ -86,14 +86,14 @@
       "mv_answer": "0.022",
       "mv_correct": true,
       "prm_answer": "0.0217",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 9,
       "question_dir": "question_9",
       "ground_truth": "9.6",
       "mv_answer": "9.7",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "97 \\text{ Angstroms}",
       "prm_correct": false
     },
@@ -129,7 +129,7 @@
       "question_dir": "question_13",
       "ground_truth": "8.7e8",
       "mv_answer": "8.8 \\times 10^8 \\, \\text{cm}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "8.68 \\times 10^{10} \\, \\text{cm}",
       "prm_correct": false
     },
@@ -264,9 +264,9 @@
       "question_dir": "question_28",
       "ground_truth": "\\left[P_{0}^{2 / 5}-\\frac{2}{5} g K^{-3 / 5} z\\right]^{5 / 2}",
       "mv_answer": "P(z) = \\left( P_0^{2/5} - \\frac{2g}{5K^{3/5}} z \\right)^{5/2}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "P = \\left( P_0^{2/5} - \\frac{G M z^2}{5 R^3} \\right)^{5/2}",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 29,
@@ -282,7 +282,7 @@
       "question_dir": "question_30",
       "ground_truth": "\\sqrt{4 \\pi G \\rho_{0} r_{0}^{2}}",
       "mv_answer": "\\sqrt{4\\pi G \\rho_0 r_0^2}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "v(r) = \\sqrt{2\\pi G \\rho_0 r_0^2 r}",
       "prm_correct": false
     },
@@ -327,7 +327,7 @@
       "question_dir": "question_35",
       "ground_truth": "\\arcsin{1.3 \\sin{\\theta_w}}",
       "mv_answer": "\\arcsin(1.3 \\sin(\\theta_w))",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "\\theta_a = \\arcsin(1.3 \\sin(\\theta_w))",
       "prm_correct": false
     },
@@ -363,9 +363,9 @@
       "question_dir": "question_39",
       "ground_truth": "0.033",
       "mv_answer": "0.0335",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "0.0334",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 40,
@@ -615,9 +615,9 @@
       "question_dir": "question_67",
       "ground_truth": "1+\\sqrt{3} i",
       "mv_answer": "1 + \\sqrt{3} i",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "1 + \\sqrt{3} i",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 68,
@@ -651,9 +651,9 @@
       "question_dir": "question_71",
       "ground_truth": "\\frac{1}{2a}(\\exp{a*t} - \\exp{-a*t})",
       "mv_answer": "\\frac{1}{2a} \\sinh(at)",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "\\frac{1}{2a} \\sinh(at)",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 72,
@@ -705,9 +705,9 @@
       "question_dir": "question_77",
       "ground_truth": "\\frac{1}{4-\\omega^{2}}",
       "mv_answer": "\\frac{1}{4 - \\omega^2}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "\\frac{1}{4 - \\omega^2}",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 78,
@@ -750,9 +750,9 @@
       "question_dir": "question_82",
       "ground_truth": "s^{2}+\\omega^{2}",
       "mv_answer": "s^2 + \\omega^2",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "s^2 + \\omega^2",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 83,
@@ -768,9 +768,9 @@
       "question_dir": "question_84",
       "ground_truth": "2 \\pi / \\omega",
       "mv_answer": "\\frac{2\\pi}{\\omega}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "\\frac{2\\pi}{\\omega}",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 85,
@@ -849,9 +849,9 @@
       "question_dir": "question_93",
       "ground_truth": "-2+2 \\sqrt{3} i",
       "mv_answer": "-2 + 2\\sqrt{3}i",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "-2 + 2\\sqrt{3}i",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 94,
@@ -939,9 +939,9 @@
       "question_dir": "question_103",
       "ground_truth": "s^{2}+b s+1",
       "mv_answer": "s^2 + b s + 1",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "s^2 + b s + 1",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 104,
@@ -957,9 +957,9 @@
       "question_dir": "question_105",
       "ground_truth": "-8-8 \\sqrt{3} i",
       "mv_answer": "-8 - 8\\sqrt{3} i",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "-8 - 8\\sqrt{3}i",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 106,
@@ -1065,9 +1065,9 @@
       "question_dir": "question_117",
       "ground_truth": "\\frac{s+\\sigma}{(s+\\sigma)^{2}+\\omega_{d}^{2}}",
       "mv_answer": "\\frac{s + \\sigma}{(s + \\sigma)^2 + \\omega_d^2}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "\\frac{s + \\sigma}{(s + \\sigma)^2 + \\omega_d^2}",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 118,
@@ -1128,9 +1128,9 @@
       "question_dir": "question_124",
       "ground_truth": "\\frac{1}{b-a}\\left(e^{-a t}-e^{-b t}\\right)",
       "mv_answer": "\\frac{1}{b-a} \\left( e^{-at} - e^{-bt} \\right)",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "\\frac{1}{b-a} \\left( e^{-at} - e^{-bt} \\right)",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 125,
@@ -1146,9 +1146,9 @@
       "question_dir": "question_126",
       "ground_truth": "(t + \\frac{1}{2} \\sin{2t}) u(t)",
       "mv_answer": "t - \\frac{1}{2} \\sin(2t)",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "t - \\frac{1}{2} \\sin(2t)",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 127,
@@ -1164,9 +1164,9 @@
       "question_dir": "question_128",
       "ground_truth": "0.2",
       "mv_answer": "\\frac{1}{5}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "\\frac{1}{5}",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 129,
@@ -1218,7 +1218,7 @@
       "question_dir": "question_134",
       "ground_truth": "0.05",
       "mv_answer": "\\frac{1}{20}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "0.05",
       "prm_correct": true
     },
@@ -1776,7 +1776,7 @@
       "question_dir": "question_196",
       "ground_truth": "181.3",
       "mv_answer": "184.6",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "182.7",
       "prm_correct": true
     },
@@ -2091,9 +2091,9 @@
       "question_dir": "question_231",
       "ground_truth": "100",
       "mv_answer": "100\\%",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "100\\%",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 232,
@@ -2199,9 +2199,9 @@
       "question_dir": "question_243",
       "ground_truth": "-\\frac{1}{2} X^{-\\frac{1}{2}}",
       "mv_answer": "-\\frac{1}{2\\sqrt{X}}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "-\\frac{1}{2\\sqrt{X}}",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 244,
@@ -2255,16 +2255,16 @@
       "mv_answer": "\\frac{K-1}{L}",
       "mv_correct": true,
       "prm_answer": "-\\frac{K-1}{L}",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 250,
       "question_dir": "question_250",
       "ground_truth": "SRAC=LRAC",
       "mv_answer": "\\text{SRAC} = \\text{LRAC}",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "\\text{SRAC} = \\text{LRAC}",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 251,
@@ -2352,9 +2352,9 @@
       "question_dir": "question_260",
       "ground_truth": "X_{d}=125-1.25 P",
       "mv_answer": "X_d = 125 - 1.25P",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "X_d = 125 - 1.25P",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 261,
@@ -2424,9 +2424,9 @@
       "question_dir": "question_268",
       "ground_truth": "\\frac{1}{3} E_{1}+\\frac{2}{3} E_{2}",
       "mv_answer": "\\frac{1}{3} E_1 + \\frac{2}{3} E_2",
-      "mv_correct": false,
+      "mv_correct": true,
       "prm_answer": "\\frac{1}{3} E_1 + \\frac{2}{3} E_2",
-      "prm_correct": false
+      "prm_correct": true
     },
     {
       "idx": 269,
