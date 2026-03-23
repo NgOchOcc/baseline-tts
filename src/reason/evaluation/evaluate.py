@@ -128,7 +128,7 @@ if __name__ == "__main__":
         args.cot_prompt = "Please solve this step by step and put your final answer in \\boxed{}."
         args.llm_step_tag = ""
         args.sep = []
-        args.stop_str = []
+        args.stop_str = ["\\boxed"]  # Stop when LLM generates \boxed{...}
 
     if args.double_line_break == 1:
         args.sep = ["\n\n"]
