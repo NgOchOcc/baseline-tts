@@ -339,6 +339,38 @@ def evaluate_all_indices_github():
     best_equiv = results_equiv[0]
     print(f"BEST (is_equiv): Index {best_equiv[0]} with {best_equiv[3]:.2f}% accuracy ({best_equiv[1]}/{best_equiv[2]})")
 
+    # Log detailed results for best index
+    print()
+    print("=" * 120)
+    print(f"DETAILED RESULTS: is_equiv at Index {best_equiv[0]}")
+    print("=" * 120)
+    print()
+    print(f"{'Q_ID':<6} {'Ground Truth':<30} {'Final Answer':<30} {'Match':<8}")
+    print("-" * 120)
+
+    best_idx = best_equiv[0]
+    if best_idx in detailed_results_per_index:
+        for i, result in enumerate(detailed_results_per_index[best_idx]['is_equiv'][:20]):
+            q_id = result['question_idx']
+            answer = result['answer'][:28] if result['answer'] else "N/A"
+            match = "✓ PASS" if result['is_correct'] else "✗ FAIL"
+            # Find ground truth for this question
+            gt_answer = "N/A"
+            for q_idx, q_dir in enumerate(question_dirs):
+                if q_idx == q_id:
+                    record_path = q_dir / "record_0.jsonl"
+                    try:
+                        with open(record_path, 'r', encoding='utf-8') as f:
+                            line = f.readline().strip()
+                            if line:
+                                record = json.loads(line)
+                                gt_answer = record.get('groundtruth', 'N/A')[:28]
+                    except:
+                        pass
+                    break
+            print(f"{q_id:<6} {gt_answer:<30} {answer:<30} {match:<8}")
+        print()
+
     # Print results for math_verify
     print("\n" + "=" * 120)
     print("RESULTS: math_verify (Advanced verification library)")
@@ -362,6 +394,38 @@ def evaluate_all_indices_github():
     print()
     best_mv = results_mv[0]
     print(f"BEST (math_verify): Index {best_mv[0]} with {best_mv[3]:.2f}% accuracy ({best_mv[1]}/{best_mv[2]})")
+
+    # Log detailed results for best index
+    print()
+    print("=" * 120)
+    print(f"DETAILED RESULTS: math_verify at Index {best_mv[0]}")
+    print("=" * 120)
+    print()
+    print(f"{'Q_ID':<6} {'Ground Truth':<30} {'Final Answer':<30} {'Match':<8}")
+    print("-" * 120)
+
+    best_idx_mv = best_mv[0]
+    if best_idx_mv in detailed_results_per_index:
+        for i, result in enumerate(detailed_results_per_index[best_idx_mv]['math_verify'][:20]):
+            q_id = result['question_idx']
+            answer = result['answer'][:28] if result['answer'] else "N/A"
+            match = "✓ PASS" if result['is_correct'] else "✗ FAIL"
+            # Find ground truth for this question
+            gt_answer = "N/A"
+            for q_idx, q_dir in enumerate(question_dirs):
+                if q_idx == q_id:
+                    record_path = q_dir / "record_0.jsonl"
+                    try:
+                        with open(record_path, 'r', encoding='utf-8') as f:
+                            line = f.readline().strip()
+                            if line:
+                                record = json.loads(line)
+                                gt_answer = record.get('groundtruth', 'N/A')[:28]
+                    except:
+                        pass
+                    break
+            print(f"{q_id:<6} {gt_answer:<30} {answer:<30} {match:<8}")
+        print()
 
     print("\n" + "=" * 120)
 
