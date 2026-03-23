@@ -1,25 +1,26 @@
 """
-Comprehensive voting evaluation for MINERVA questions using is_equiv (SymPy).
-Applies all voting strategies from vote_utils.py with mathematical equivalence.
-Uses is_equiv() from eval_github.py for mathematical equivalence checking.
+Comprehensive MINERVA evaluation using is_equiv (SymPy mathematical equivalence).
+Saves three output files:
+1. voting_results.json - Voting strategy results (like avg_result.json)
+2. pass_at_k_results.json - pass@1, pass@8, pass@16, pass@32 metrics
+3. detailed_samples.json - Full details for each sample (ground_truth, predict, result)
 """
 
 import json
 import logging
 import re
-from collections import Counter, defaultdict
-from typing import List, Optional
-from pathlib import Path
 import signal
+from collections import Counter, defaultdict
+from pathlib import Path
+from typing import List
 
 import sympy
 from sympy.parsing.latex import parse_latex
 
 # Setup logging
-eval_logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.WARNING)
+eval_logger = logging.getLogger(__name__)
 
-# ── Timeout Context Manager ─────────────────────────────────────────────────
 
 class timeout:
     """Timeout context manager for preventing infinite parsing loops."""
@@ -38,14 +39,8 @@ class timeout:
         signal.alarm(0)
 
 
-# ── is_equiv Implementation (from eval_github.py) ───────────────────────────
-
 def is_equiv(x1: str, x2: str) -> bool:
-    """
-    SymPy-based mathematical equivalence check.
-    x1 and x2 are normalized latex strings.
-    Parses LaTeX, simplifies mathematically, checks if difference = 0.
-    """
+    """SymPy-based mathematical equivalence check."""
     try:
         with timeout(seconds=5):
             try:
@@ -56,38 +51,25 @@ def is_equiv(x1: str, x2: str) -> bool:
                 sympy.SympifyError,
                 TypeError,
             ):
-                eval_logger.debug(f"couldn't parse one of {x1} or {x2}")
                 return False
 
             try:
                 diff = parsed_x1 - parsed_x2
             except TypeError:
-                eval_logger.debug(f"couldn't subtract {x1} and {x2}")
                 return False
 
             try:
-                if sympy.simplify(diff) == 0:
-                    return True
-                else:
-                    return False
+                return sympy.simplify(diff) == 0
             except ValueError:
-                eval_logger.debug(
-                    f"Had some trouble simplifying when comparing {x1} and {x2}"
-                )
+                return False
     except TimeoutError:
-        eval_logger.debug(f"Timed out comparing {x1} and {x2}")
         return False
-    except Exception as e:
-        eval_logger.debug(f"Failed comparing {x1} and {x2} with {e}")
+    except Exception:
         return False
-
-    return False
 
 
 def normalize_final_answer(final_answer: str) -> str:
-    """
-    Normalize answer following Lewkowycz et al. (2022) from eval_github.py
-    """
+    """Normalize answer following Lewkowycz et al. (2022)."""
     if not final_answer:
         return ""
 
@@ -104,77 +86,36 @@ def normalize_final_answer(final_answer: str) -> str:
         ("\\text{m}", "\\text{}"),
     ]
     REMOVED_EXPRESSIONS = [
-        "square",
-        "ways",
-        "integers",
-        "dollars",
-        "mph",
-        "inches",
-        "ft",
-        "hours",
-        "km",
-        "units",
-        "\\ldots",
-        "sue",
-        "points",
-        "feet",
-        "minutes",
-        "digits",
-        "cents",
-        "degrees",
-        "cm",
-        "gm",
-        "pounds",
-        "meters",
-        "meals",
-        "edges",
-        "students",
-        "childrentickets",
-        "multiples",
-        "\\text{s}",
-        "\\text{.}",
-        "\\text{\ns}",
-        "\\text{}^2",
-        "\\text{}^3",
-        "\\text{\n}",
-        "\\text{}",
-        r"\mathrm{th}",
-        r"^\circ",
-        r"^{\circ}",
-        r"\;",
-        r",\!",
-        "{,}",
-        '"',
-        "\\dots",
+        "square", "ways", "integers", "dollars", "mph", "inches", "ft", "hours",
+        "km", "units", "\\ldots", "sue", "points", "feet", "minutes", "digits",
+        "cents", "degrees", "cm", "gm", "pounds", "meters", "meals", "edges",
+        "students", "childrentickets", "multiples", "\\text{s}", "\\text{.}",
+        "\\text{\ns}", "\\text{}^2", "\\text{}^3", "\\text{\n}", "\\text{}",
+        r"\mathrm{th}", r"^\circ", r"^{\circ}", r"\;", r",\!", "{,}", '"', "\\dots",
     ]
 
     final_answer = final_answer.split("=")[-1]
-
     for before, after in SUBSTITUTIONS:
         final_answer = final_answer.replace(before, after)
     for expr in REMOVED_EXPRESSIONS:
         final_answer = final_answer.replace(expr, "")
 
-    # Extract answer that is in LaTeX math
     final_answer = re.sub(r"(.*?)(\$)(.*?)(\$)(.*)", "$\\3$", final_answer)
     final_answer = re.sub(r"(\\text\{)(.*?)(\})", "\\2", final_answer)
     final_answer = re.sub(r"(\\textbf\{)(.*?)(\})", "\\2", final_answer)
     final_answer = re.sub(r"(\\overline\{)(.*?)(\})", "\\2", final_answer)
     final_answer = re.sub(r"(\\boxed\{)(.*)(\})", "\\2", final_answer)
-
-    # Normalize shorthand TeX
     final_answer = re.sub(r"(frac)([^{])(.)", "frac{\\2}{\\3}", final_answer)
     final_answer = re.sub(r"(sqrt)([^{])", "sqrt{\\2}", final_answer)
     final_answer = final_answer.replace("$", "")
 
-    # Normalize 100,000 -> 100000
     if final_answer.replace(",", "").isdigit():
         final_answer = final_answer.replace(",", "")
 
     return final_answer
 
 
-# ── Voting Functions (from vote_utils.py) ──────────────────────────────────
+# ── Voting Functions ────────────────────────────────────────────────────────
 
 MAJORITY_VOTE = "majority_vote"
 PRM_MIN_MAX = "prm_min_max"
@@ -196,7 +137,6 @@ VOTING_STRATEGIES = [
 
 
 def _agg_majority_vote(x_list: List[str], unused_v_list, return_reward=False):
-    """Vote based on answer frequency."""
     counts = Counter(x_list)
     most_common = max(counts, key=counts.get)
     if return_reward:
@@ -205,12 +145,10 @@ def _agg_majority_vote(x_list: List[str], unused_v_list, return_reward=False):
 
 
 def _agg_orm_vote(x_list: List[str], v_list: List[float], return_reward_idx=False):
-    """Weighted vote by summing scores for each answer."""
     assert len(x_list) == len(v_list)
     x_dict = defaultdict(lambda: 0.0)
     for x, v in zip(x_list, v_list):
         x_dict[x] += v
-
     highest_x = max(x_dict, key=x_dict.get)
     if return_reward_idx:
         idx_list = [i for i, x in enumerate(x_list) if x == highest_x]
@@ -221,7 +159,6 @@ def _agg_orm_vote(x_list: List[str], v_list: List[float], return_reward_idx=Fals
 
 
 def _agg_prm_min_max(x_list: List[str], v_list: List[List[float]], return_reward=False):
-    """Select output with highest minimum reward score."""
     new_v_list = [min(v) if v else -1.0 for v in v_list]
     idx = new_v_list.index(max(new_v_list))
     text_max = x_list[idx]
@@ -231,7 +168,6 @@ def _agg_prm_min_max(x_list: List[str], v_list: List[List[float]], return_reward
 
 
 def _agg_prm_last_max(x_list: List[str], v_list: List[List[float]], return_reward=False):
-    """Select output with highest last reward score."""
     new_v_list = [v[-1] if v else -1.0 for v in v_list]
     idx = new_v_list.index(max(new_v_list))
     text_max = x_list[idx]
@@ -241,7 +177,6 @@ def _agg_prm_last_max(x_list: List[str], v_list: List[List[float]], return_rewar
 
 
 def _agg_prm_min_vote(x_list: List[str], v_list: List[List[float]], return_reward=False):
-    """Vote with weights = minimum reward of each output."""
     new_v_list = [min(v) if v else -1.0 for v in v_list]
     if return_reward:
         x, idx = _agg_orm_vote(x_list, new_v_list, return_reward_idx=True)
@@ -250,7 +185,6 @@ def _agg_prm_min_vote(x_list: List[str], v_list: List[List[float]], return_rewar
 
 
 def _agg_prm_last_vote(x_list: List[str], v_list: List[List[float]], return_reward=False):
-    """Vote with weights = last reward of each output."""
     new_v_list = [v[-1] if v else -1.0 for v in v_list]
     if return_reward:
         x, idx = _agg_orm_vote(x_list, new_v_list, return_reward_idx=True)
@@ -259,7 +193,6 @@ def _agg_prm_last_vote(x_list: List[str], v_list: List[List[float]], return_rewa
 
 
 def _agg_prm_avg_max(x_list: List[str], v_list: List[List[float]], return_reward=False):
-    """Select output with highest average reward score."""
     new_v_list = [(sum(v) / len(v)) if v else -1.0 for v in v_list]
     idx = new_v_list.index(max(new_v_list))
     text_max = x_list[idx]
@@ -269,7 +202,6 @@ def _agg_prm_avg_max(x_list: List[str], v_list: List[List[float]], return_reward
 
 
 def _agg_prm_avg_vote(x_list: List[str], v_list: List[List[float]], return_reward=False):
-    """Vote with weights = average reward of each output."""
     new_v_list = [(sum(v) / len(v)) if v else -1.0 for v in v_list]
     if return_reward:
         x, idx = _agg_orm_vote(x_list, new_v_list, return_reward_idx=True)
@@ -288,10 +220,10 @@ AGG_FN_MAP = {
 }
 
 
-def evaluate_all_strategies_is_equiv():
-    """Evaluate using is_equiv (SymPy mathematical equivalence)."""
+def evaluate_is_equiv():
+    """Main evaluation using is_equiv with voting strategies and pass@k metrics."""
     base_dir = Path("/Users/luungoc/Project/compute-optimal-tts/MINERVA_best_of_n")
-    base_dir = base_dir / "Qwen2.5-7B-Instruct" / "Qwen2.5-Math-PRM-7B" / "seed_0_width_32_num_seq_32_num_q_0"
+    base_dir = base_dir / "Qwen2.5-7B-Instruct" / "Qwen2.5-Math-PRM-7B" / "seed_0_width_16_num_seq_16_num_q_0"
 
     # Get all question directories
     question_dirs = sorted(
@@ -301,15 +233,18 @@ def evaluate_all_strategies_is_equiv():
 
     print(f"Found {len(question_dirs)} question directories")
     print("=" * 80)
-    print("USING: is_equiv (SymPy mathematical equivalence from eval_github.py)")
+    print("EVALUATING with is_equiv (SymPy mathematical equivalence)")
     print("=" * 80)
+    print()
 
     # Initialize tracking
     strategy_results = {strategy: {'correct': 0, 'total': 0} for strategy in VOTING_STRATEGIES}
+    pass_at_k = {1: {'correct': 0, 'total': 0}, 8: {'correct': 0, 'total': 0}, 16: {'correct': 0, 'total': 0}, 32: {'correct': 0, 'total': 0}}
+    all_samples = []
     total_completion_tokens = 0
 
     # Process each question
-    for idx, question_dir in enumerate(question_dirs):
+    for q_idx, question_dir in enumerate(question_dirs):
         record_path = question_dir / "record_0.jsonl"
 
         if not record_path.exists():
@@ -331,29 +266,19 @@ def evaluate_all_strategies_is_equiv():
         if not outputs or not ground_truth:
             continue
 
-        # Normalize ground truth
         normalized_gt = normalize_final_answer(ground_truth)
-
-        # Prepare data for voting
         x_list = [o.get('extracted_answer') for o in outputs]
         v_list = [o.get('reward_history', []) for o in outputs]
 
-        # Count tokens
         total_completion_tokens += record.get('result', {}).get('total_completion_tokens', 0)
 
-        # Apply each voting strategy
+        # === VOTING STRATEGIES ===
         for strategy in VOTING_STRATEGIES:
             try:
-                if strategy == MAJORITY_VOTE:
-                    selected_answer = AGG_FN_MAP[strategy](x_list, v_list)
-                else:
-                    selected_answer = AGG_FN_MAP[strategy](x_list, v_list)
+                selected_answer = AGG_FN_MAP[strategy](x_list, v_list)
 
                 if selected_answer:
-                    # Normalize the selected answer
                     normalized_answer = normalize_final_answer(selected_answer)
-
-                    # Verify using is_equiv (mathematical equivalence)
                     is_correct = is_equiv(normalized_answer, normalized_gt)
                 else:
                     is_correct = False
@@ -365,38 +290,97 @@ def evaluate_all_strategies_is_equiv():
             except Exception:
                 pass
 
-        # Print progress
-        if (idx + 1) % 50 == 0 or (idx + 1) == len(question_dirs):
-            print(f"[{idx+1}/{len(question_dirs)}]")
+        # === PASS@K METRICS ===
+        for k in [1, 8, 16, 32]:
+            # Check if any of first k outputs has correct answer
+            is_correct_at_k = False
+            for i in range(min(k, len(x_list))):
+                answer = x_list[i]
+                if answer:
+                    normalized_answer = normalize_final_answer(answer)
+                    if is_equiv(normalized_answer, normalized_gt):
+                        is_correct_at_k = True
+                        break
 
-    # Calculate accuracies
-    results_dict = {}
+            pass_at_k[k]['total'] += 1
+            if is_correct_at_k:
+                pass_at_k[k]['correct'] += 1
+
+        # === DETAILED SAMPLES ===
+        for output_idx in range(min(32, len(x_list))):
+            answer = x_list[output_idx]
+            if answer:
+                normalized_answer = normalize_final_answer(answer)
+                is_correct = is_equiv(normalized_answer, normalized_gt)
+                all_samples.append({
+                    'question_idx': q_idx,
+                    'output_index': output_idx,
+                    'ground_truth': ground_truth,
+                    'normalized_ground_truth': normalized_gt,
+                    'predicted_answer': answer,
+                    'normalized_predicted_answer': normalized_answer,
+                    'is_correct': is_correct,
+                })
+
+        # Print progress
+        if (q_idx + 1) % 50 == 0 or (q_idx + 1) == len(question_dirs):
+            print(f"[{q_idx+1}/{len(question_dirs)}] Processed")
+
+    # === SAVE RESULTS ===
+
+    # 1. Voting results (like avg_result.json)
+    voting_results = {}
     print()
+    print("=" * 80)
+    print("VOTING STRATEGY RESULTS")
+    print("=" * 80)
     for strategy in VOTING_STRATEGIES:
         total = strategy_results[strategy]['total']
         correct = strategy_results[strategy]['correct']
         accuracy = correct / total if total > 0 else 0.0
-        results_dict[strategy] = accuracy
+        voting_results[strategy] = accuracy
         print(f"{strategy:20} {correct:3d}/{total} = {accuracy*100:6.2f}%")
 
-    # Calculate average tokens
-    total_questions = strategy_results[MAJORITY_VOTE]['total']
-    avg_tokens = total_completion_tokens / total_questions if total_questions > 0 else 0
+    avg_tokens = total_completion_tokens / len(question_dirs) if len(question_dirs) > 0 else 0
+    voting_results['total_completion_tokens'] = avg_tokens
 
-    results_dict['total_completion_tokens'] = avg_tokens
+    voting_file = base_dir / "voting_results.json"
+    with open(voting_file, 'w') as f:
+        json.dump([voting_results], f, indent=2)
+    print(f"\n✓ Saved to: {voting_file}")
 
-    print("\n" + "=" * 80)
-    print(f"Average tokens per question: {avg_tokens:.2f}")
+    # 2. Pass@K results
+    pass_at_k_results = {}
+    print()
+    print("=" * 80)
+    print("PASS@K METRICS")
+    print("=" * 80)
+    for k in [1, 8, 16, 32]:
+        total = pass_at_k[k]['total']
+        correct = pass_at_k[k]['correct']
+        accuracy = correct / total if total > 0 else 0.0
+        pass_at_k_results[f'pass@{k}'] = accuracy
+        print(f"pass@{k:<2} {correct:3d}/{total} = {accuracy*100:6.2f}%")
+
+    pass_at_k_file = base_dir / "pass_at_k_results.json"
+    with open(pass_at_k_file, 'w') as f:
+        json.dump(pass_at_k_results, f, indent=2)
+    print(f"\n✓ Saved to: {pass_at_k_file}")
+
+    # 3. Detailed samples
+    detailed_file = base_dir / "detailed_samples.json"
+    with open(detailed_file, 'w') as f:
+        json.dump({
+            'total_samples': len(all_samples),
+            'samples': all_samples
+        }, f, indent=2)
+    print()
+    print("=" * 80)
+    print(f"✓ Saved detailed samples ({len(all_samples)} samples) to: {detailed_file}")
     print("=" * 80)
 
-    # Save results to JSON
-    output_file = base_dir / "avg_result_is_equiv.json"
-    with open(output_file, 'w') as f:
-        json.dump([results_dict], f)
-
-    print(f"\nResults saved to: {output_file}")
-    return results_dict
+    return voting_results, pass_at_k_results, all_samples
 
 
 if __name__ == "__main__":
-    evaluate_all_strategies_is_equiv()
+    evaluate_is_equiv()

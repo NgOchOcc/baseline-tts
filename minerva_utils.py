@@ -37,7 +37,7 @@ def extract_boxed_answer(text: str) -> Optional[str]:
 def verify_answer(
     response: str,
     ground_truth: str,
-    use_math_verify: bool = False,
+    use_math_verify: bool = True,
 ) -> bool:
     """
     Verify response against ground truth using math_verify if available.

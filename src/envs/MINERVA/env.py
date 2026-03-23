@@ -182,6 +182,13 @@ class Env(CoTEnv):
         self.model_names = config.get("model_names", [])
         self.double_line_break = config.get("double_line_break", 0)
 
+    def _is_correct(self, completion):
+        """Check if completion is correct by extracting answer and judging.
+        Uses math_verify library for MINERVA.
+        """
+        extracted_answer = extract_answer(completion)
+        return judge_correct(self.math_problem["question"], self.math_problem["answer"], extracted_answer)
+
     def get_reward(self):
         """Get reward from reward model.
         For MINERVA, returns 0 as placeholder (actual reward comes from rm_call).
