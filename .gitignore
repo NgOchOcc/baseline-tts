@@ -1,2 +1,19 @@
 .DS_Store
 /.idea
+
+# Python cache directories
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+
+# Large model directories
+Qwen2.5-7B-Instruct/
+MINERVA_best_of_n/
+
+# Other cache and build directories
+*.egg-info/
+.pytest_cache/
+.coverage
+build/
+dist/
