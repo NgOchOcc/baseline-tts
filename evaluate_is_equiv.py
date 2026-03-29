@@ -223,7 +223,7 @@ AGG_FN_MAP = {
 def evaluate_is_equiv():
     """Main evaluation using is_equiv with voting strategies and pass@k metrics."""
     base_dir = Path("/Users/luungoc/Project/compute-optimal-tts/MINERVA_best_of_n")
-    base_dir = base_dir / "Qwen2.5-7B-Instruct" / "Qwen2.5-Math-PRM-7B" / "seed_0_width_16_num_seq_16_num_q_0"
+    base_dir = base_dir / "Qwen2.5-7B-Instruct" / "Qwen2.5-Math-PRM-7B" / "seed_0_width_32_num_seq_32_num_q_0"
 
     # Get all question directories
     question_dirs = sorted(
